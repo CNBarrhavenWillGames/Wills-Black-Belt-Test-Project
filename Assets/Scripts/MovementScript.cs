@@ -15,6 +15,8 @@ public class MovementScript : MonoBehaviour
     public int jumpHeight;
     public bool grounded;
 
+    public CameraRotation cameraRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,30 +26,30 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
+        direction = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        print(direction);
         Debug.DrawRay(player.transform.position, Vector3.down, Color.red);
         if (Physics.Raycast(player.transform.position, Vector3.down, 1.1f)) 
         {
             grounded = true;
-            print("grounded");
         } 
         else
         {
             grounded = false;
-            print("not grounded");
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded) 
         {
             rb.AddForce(0,jumpHeight * 10,0);
         }
+
+        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * cameraRotation.sensitivity);
     }
 
    void FixedUpdate()
    {
         Vector3 newVelocity = rb.velocity;
-        newVelocity += new Vector3(direction.x * acceleration, 0, direction.y * acceleration) * Time.fixedDeltaTime;
+        newVelocity += new Vector3(direction.x * acceleration, 0, direction.z * acceleration) * Time.fixedDeltaTime;
 
         Vector2 xyVelocity = new Vector3(newVelocity.x, newVelocity.z);
 
