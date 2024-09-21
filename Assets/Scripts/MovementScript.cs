@@ -27,7 +27,6 @@ public class MovementScript : MonoBehaviour
     void Update()
     {
         direction = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
-        print(direction);
         Debug.DrawRay(player.transform.position, Vector3.down, Color.red);
         if (Physics.Raycast(player.transform.position, Vector3.down, 1.1f)) 
         {
