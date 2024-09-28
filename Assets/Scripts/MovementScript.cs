@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -9,13 +10,23 @@ public class MovementScript : MonoBehaviour
     public Rigidbody rb;
     public float acceleration;
     public Vector3 direction;
-    public float maxSpeed;
-
 
     public int jumpHeight;
     public bool grounded;
 
     public CameraRotation cameraRotation;
+
+    public int baseMaxSpeed;
+
+    public const int maxWeight = 100;
+
+    public float weight;
+    public float maxSpeed => CalculateMaxSpeed();
+
+    public float CalculateMaxSpeed()
+    {
+        return baseMaxSpeed * ((maxWeight - weight) / maxWeight);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +72,9 @@ public class MovementScript : MonoBehaviour
         newVelocity = new Vector3(xyVelocity.x, newVelocity.y, xyVelocity.y);
 
         rb.velocity = newVelocity;
+
+        print(maxSpeed);
+        print(weight);
    }
 
 
