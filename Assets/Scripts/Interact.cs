@@ -25,7 +25,8 @@ public class Interact : MonoBehaviour
             if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
             {
                 movementScript.weight += interactScript.weight;
-                backpackManager.AddSprite(interactObject.i)
+                backpackManager.AddSprite(interactObject);
+                interactObject = null;
             }
          
 

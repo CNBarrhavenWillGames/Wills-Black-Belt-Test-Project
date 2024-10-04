@@ -72,9 +72,6 @@ public class MovementScript : MonoBehaviour
         newVelocity = new Vector3(xyVelocity.x, newVelocity.y, xyVelocity.y);
 
         rb.velocity = newVelocity;
-
-        print(maxSpeed);
-        print(weight);
    }
 
 
