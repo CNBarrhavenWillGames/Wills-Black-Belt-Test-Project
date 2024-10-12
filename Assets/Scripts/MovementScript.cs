@@ -6,22 +6,29 @@ using UnityEngine.Android;
 
 public class MovementScript : MonoBehaviour
 {
+    [Header("Player Physics")]
     public GameObject player;
     public Rigidbody rb;
     public float acceleration;
     public Vector3 direction;
-
     public int jumpHeight;
     public bool grounded;
 
     public CameraRotation cameraRotation;
 
+    [Header("Movement")]
     public int baseMaxSpeed;
-
     public const int maxWeight = 100;
-
     public float weight;
+
+    [Header("Not Magic Numbers")]
+    public float groundCollisionRadius = 0.3f;
+    public float groundCollisionDistance = 0.1f;
     public float maxSpeed => CalculateMaxSpeed();
+
+    public LayerMask groundedMask;
+
+    private Vector3 gizmosPosition;
 
     public float CalculateMaxSpeed()
     {
@@ -37,14 +44,18 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        direction = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
         Debug.DrawRay(player.transform.position, Vector3.down, Color.red);
-        if (Physics.Raycast(player.transform.position, Vector3.down, 1.1f)) 
+        if (Physics.SphereCast(player.transform.position, groundCollisionRadius, Vector3.down, out RaycastHit hit, groundCollisionDistance, groundedMask))
         {
+            gizmosPosition = hit.point;
+            Gizmos.color = Color.magenta;
             grounded = true;
         } 
         else
         {
+            Gizmos.color = Color.red;
+            gizmosPosition = player.transform.position + Vector3.down * groundCollisionDistance;
             grounded = false;
         }
 
@@ -58,21 +69,73 @@ public class MovementScript : MonoBehaviour
 
    void FixedUpdate()
    {
-        Vector3 newVelocity = rb.velocity;
-        newVelocity += new Vector3(direction.x * acceleration, 0, direction.z * acceleration) * Time.fixedDeltaTime;
-
-        Vector2 xyVelocity = new Vector3(newVelocity.x, newVelocity.z);
-
-        if (xyVelocity.magnitude > maxSpeed) 
-        { 
-            xyVelocity.Normalize();
-            xyVelocity *= maxSpeed;
+        if (grounded)      
+        {
+            GroundedMovement(); // later use?
         }
-
-        newVelocity = new Vector3(xyVelocity.x, newVelocity.y, xyVelocity.y);
-
-        rb.velocity = newVelocity;
+        else
+        {
+            AirMovement(); // later use?
+        }
    }
 
+    void GroundedMovement()
+    {
+        Vector2 xzVelocity = new Vector3(rb.velocity.x, rb.velocity.z);
+        float yVelo = rb.velocity.y;
 
+
+
+        if (direction != Vector3.zero)
+        {
+            xzVelocity += new Vector2(direction.x * acceleration, direction.z * acceleration) * Time.fixedDeltaTime;
+        }
+        else
+        {
+            xzVelocity *= 0.7f;
+        }
+
+        if (xzVelocity.magnitude > maxSpeed)
+        {
+            xzVelocity.Normalize();
+            xzVelocity *= maxSpeed;
+        }
+
+        Vector3 newVelocity = new Vector3(xzVelocity.x, yVelo, xzVelocity.y);
+
+        rb.velocity = newVelocity;
+    }
+
+    void AirMovement()
+    {
+        Vector2 xzVelocity = new Vector3(rb.velocity.x, rb.velocity.z);
+        float yVelo = rb.velocity.y;
+
+
+
+        if (direction != Vector3.zero)
+        {
+            xzVelocity += new Vector2(direction.x * acceleration, direction.z * acceleration) * Time.fixedDeltaTime;
+        }
+        else
+        {
+            xzVelocity *= 0.7f;
+        }
+
+        if (xzVelocity.magnitude > maxSpeed)
+        {
+            xzVelocity.Normalize();
+            xzVelocity *= maxSpeed;
+        }
+
+        Vector3 newVelocity = new Vector3(xzVelocity.x, yVelo, xzVelocity.y);
+
+        rb.velocity = newVelocity;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(gizmosPosition, groundCollisionRadius);
+    }
 }
