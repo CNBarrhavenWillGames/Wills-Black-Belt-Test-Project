@@ -4,14 +4,17 @@ using System.Globalization;
 using UnityEngine;
 using System.Text.Json;
 
-[System.Serializable]
+
+[System.Serializable]   // need this so it's allowed to be maded to a json
 public class SaveData
 {
-    public int day { get; set;  }
-    public List<string> totalItems { get; set; }
-    public int totalRadiance { get; set; }
-    public int totalFood { get; set; }
+    public int day; // turns out in this language and environement having { get; set; } actually breaks the json, contrary to the forum
+    [SerializeField] // need this to mark list as a serializable thing (bc list is more complicated than ints kinda) (I think)
+    public List<string> totalItems;
+    public int totalRadiance;
+    public int totalFood;
 
+    // Generic constructor. sets things t odefualt fvlaues
     public SaveData()
     {
         day = 0;
@@ -20,11 +23,13 @@ public class SaveData
         totalFood = 0;
     }
 
+    // turn a saveData instance into a string
     public string ToJsonString()
     {
         return JsonUtility.ToJson(this);
     }
 
+    // make a new saveData instance from a string
     public static SaveData FromJsonString(string jsonString)
     {
         return JsonUtility.FromJson<SaveData>(jsonString);
@@ -61,4 +66,5 @@ public static class DataStorage
         }
     }
 
+    // probably add a reset progress type function or somethin for debugging. 
 }
