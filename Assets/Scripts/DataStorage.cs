@@ -4,12 +4,21 @@ using System.Globalization;
 using UnityEngine;
 using System.Text.Json;
 
+[System.Serializable]
 public class SaveData
 {
     public int day { get; set;  }
-    public string[] totalItems { get; set; }
+    public List<string> totalItems { get; set; }
     public int totalRadiance { get; set; }
     public int totalFood { get; set; }
+
+    public SaveData()
+    {
+        day = 0;
+        totalItems = new List<string>();
+        totalRadiance = 0;
+        totalFood = 0;
+    }
 
     public string ToJsonString()
     {
@@ -33,21 +42,22 @@ public static class DataStorage
 
     public static void Save()
     {
+        Debug.Log("saved data: " + saveData.ToJsonString());
         PlayerPrefs.SetString("saveData", saveData.ToJsonString());
     }
 
     public static void Load()
     {
         string dataString = PlayerPrefs.GetString("saveData");
-        if (string.IsNullOrEmpty(dataString))
+        if (string.IsNullOrEmpty(dataString) || dataString == "{}")
         {
-            Debug.Log("data filed, making new one.");
             DataStorage.saveData = new SaveData();
+            Debug.Log("data filed, making new one.");
         }
         else
         {
-            Debug.Log("data succrss");
             DataStorage.saveData = SaveData.FromJsonString(dataString);
+            Debug.Log("data succrss: " + dataString);
         }
     }
 
