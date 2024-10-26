@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataChangeScript : MonoBehaviour
 {
@@ -29,5 +30,16 @@ public class DataChangeScript : MonoBehaviour
             Debug.Log("Added Ten Radiance");
             DataStorage.saveData.totalRadiance += 10;
         }
+        else if (type == 3)
+        {
+            DataStorage.saveData.day += 1;
+            DataStorage.Save();
+            SceneManager.LoadScene(1);
+        }
+    }
+
+    public void ResetData()
+    {
+        DataStorage.Reset();
     }
 }

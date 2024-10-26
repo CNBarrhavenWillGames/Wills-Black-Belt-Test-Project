@@ -31,6 +31,8 @@ public class BackpackManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && inventory.Count > 0) 
         {
             movementScript.weight -= inventory[selectedSlot].GetComponent<InteractableStats>().weight;
+            DataStorage.dayRadiance -= inventory[selectedSlot].GetComponent<InteractableStats>().radiance;
+
             inventory[selectedSlot].SetActive(true);
             inventory.RemoveAt(selectedSlot);
             slots[inventory.Count].SetActive(false);

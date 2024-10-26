@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using System.Text.Json;
+// #FIXME
 
-
-[System.Serializable]   // need this so it's allowed to be maded to a json
+[System.Serializable]   // need this so it's allowed to be made to a json
 public class SaveData
 {
     public int day; // turns out in this language and environement having { get; set; } actually breaks the json, contrary to the forum
@@ -14,7 +14,7 @@ public class SaveData
     public int totalRadiance;
     public int totalFood;
 
-    // Generic constructor. sets things t odefualt fvlaues
+    // Generic constructor. sets things to default values
     public SaveData()
     {
         day = 0;
@@ -62,9 +62,13 @@ public static class DataStorage
         else
         {
             DataStorage.saveData = SaveData.FromJsonString(dataString);
-            Debug.Log("data succrss: " + dataString);
+            Debug.Log("data success: " + dataString);
         }
     }
 
+    public static void Reset()
+    {
+        PlayerPrefs.SetString("saveData", "{}");
+    }
     // probably add a reset progress type function or somethin for debugging. 
 }

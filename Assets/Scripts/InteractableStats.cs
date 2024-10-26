@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractableStats : MonoBehaviour
 {
+    public int radiance;
     public int weight;
     public Sprite sprite;
     public GameObject prefab;

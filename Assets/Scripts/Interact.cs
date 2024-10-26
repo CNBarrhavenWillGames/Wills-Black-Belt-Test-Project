@@ -10,6 +10,8 @@ public class Interact : MonoBehaviour
 
     public MovementScript movementScript;
     public BackpackManager backpackManager;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Interact : MonoBehaviour
             if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
             {
                 movementScript.weight += interactScript.weight;
+                DataStorage.dayRadiance += interactScript.radiance;
                 backpackManager.AddSprite(interactObject);
                 interactObject = null;
             }
