@@ -9,6 +9,7 @@ public class CounterScript : MonoBehaviour
     public enum counterType
     {
         currentRadiance = 0,
+        currentFood = 1,
     }
 
     public counterType id;
@@ -25,6 +26,9 @@ public class CounterScript : MonoBehaviour
         {
             case counterType.currentRadiance:
                 text.text = "Current Radiance: " + DataStorage.dayRadiance;
+                break;
+            case counterType.currentFood:
+                text.text = "Current Food: " + (DataStorage.dayFood / 10);
                 break;
         }
     }

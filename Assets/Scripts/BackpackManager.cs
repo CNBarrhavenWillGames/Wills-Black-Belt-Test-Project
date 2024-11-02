@@ -7,12 +7,15 @@ using UnityEngine.UI;
 public class BackpackManager : MonoBehaviour
 {
     public GameObject activeSlot;
+
+    public GameObject slot;
+
     public int activeSlotInt;
 
     public int selectedSlot;
 
     public List<GameObject> inventory;
-    public GameObject[] slots;
+    public List<GameObject> slots;
 
     public MovementScript movementScript; 
     // Start is called before the first frame update
@@ -34,9 +37,13 @@ public class BackpackManager : MonoBehaviour
             DataStorage.dayRadiance -= inventory[selectedSlot].GetComponent<InteractableStats>().radiance;
             DataStorage.dayFood -= inventory[selectedSlot].GetComponent<InteractableStats>().food;
 
+            GameObject newSlot = Instantiate(slot, gameObject.transform);
+
+            slots.Add(newSlot);
+
             inventory[selectedSlot].SetActive(true);
             inventory.RemoveAt(selectedSlot);
-            slots[inventory.Count].SetActive(false);
+            slots[selectedSlot].SetActive(false);
             activeSlotInt = inventory.Count;
             activeSlot = slots[activeSlotInt];
 
@@ -54,18 +61,20 @@ public class BackpackManager : MonoBehaviour
         }
         else
         {
+            slots[selectedSlot].GetComponent<Image>().color = Color.gray;
             selectedSlot = selectedSlot % activeSlotInt;
             if (selectedSlot < 0)
             {
                 selectedSlot = activeSlotInt + selectedSlot;
+                slots[selectedSlot].GetComponent<Image>().color = Color.white;
             }
         }
 
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Count; i++)
         {
-            slots[i].GetComponent<Image>().color = Color.white;
+            slots[i].GetComponent<Image>().color = Color.gray;
         }
-        slots[selectedSlot].GetComponent<Image>().color = Color.gray;
+        
     }
 
     public void AddSprite(GameObject item)
