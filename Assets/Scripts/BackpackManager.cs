@@ -44,8 +44,8 @@ public class BackpackManager : MonoBehaviour
             inventory[selectedSlot].SetActive(true);
             inventory.RemoveAt(selectedSlot);
             slots[selectedSlot].SetActive(false);
-            activeSlotInt = inventory.Count;
-            activeSlot = slots[activeSlotInt];
+            //activeSlotInt = inventory.Count;
+           // activeSlot = slots[activeSlotInt];
 
             selectedSlot--;
             setSlot();
@@ -83,11 +83,11 @@ public class BackpackManager : MonoBehaviour
 
         inventory.Add(itemScript.prefab);
 
-        activeSlot.SetActive(true);
-        activeSlot.GetComponent<Image>().sprite = itemScript.sprite;
+       // activeSlot.SetActive(true);
+       // activeSlot.GetComponent<Image>().sprite = itemScript.sprite;
 
-        activeSlotInt = inventory.Count;
-        activeSlot = slots[activeSlotInt];
+       // activeSlotInt = inventory.Count;
+      //  activeSlot = slots[activeSlotInt];
 
         item.SetActive(false);
     }
