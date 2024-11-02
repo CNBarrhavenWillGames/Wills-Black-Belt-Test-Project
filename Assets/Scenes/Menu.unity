@@ -504,7 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayCounter: {fileID: 67960122}
   totalRadianceCounter: {fileID: 1786530455}
-  dayRadianceCounter: {fileID: 978418358}
+  currentRadianceCounter: {fileID: 0}
 --- !u!4 &578559083
 Transform:
   m_ObjectHideFlags: 0
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 324a93777c478084b982931633d2f2a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 4
 --- !u!114 &1337201087
 MonoBehaviour:
   m_ObjectHideFlags: 0

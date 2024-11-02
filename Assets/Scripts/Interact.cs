@@ -28,6 +28,7 @@ public class Interact : MonoBehaviour
             {
                 movementScript.weight += interactScript.weight;
                 DataStorage.dayRadiance += interactScript.radiance;
+                DataStorage.dayFood += interactScript.food;
                 backpackManager.AddSprite(interactObject);
                 interactObject = null;
             }

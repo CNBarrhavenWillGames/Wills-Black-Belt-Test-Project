@@ -23,7 +23,7 @@ public class Exit : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             DataStorage.Save();
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }
 }

@@ -68,7 +68,9 @@ public static class DataStorage
 
     public static void Reset()
     {
-        PlayerPrefs.SetString("saveData", "{}");
+        saveData = new SaveData();
+        PlayerPrefs.SetString("saveData", saveData.ToJsonString());
+        Debug.Log("reset data: " + saveData.ToJsonString());
     }
     // probably add a reset progress type function or somethin for debugging. 
 }

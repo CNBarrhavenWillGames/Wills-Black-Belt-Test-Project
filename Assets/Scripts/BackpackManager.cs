@@ -32,6 +32,7 @@ public class BackpackManager : MonoBehaviour
         {
             movementScript.weight -= inventory[selectedSlot].GetComponent<InteractableStats>().weight;
             DataStorage.dayRadiance -= inventory[selectedSlot].GetComponent<InteractableStats>().radiance;
+            DataStorage.dayFood -= inventory[selectedSlot].GetComponent<InteractableStats>().food;
 
             inventory[selectedSlot].SetActive(true);
             inventory.RemoveAt(selectedSlot);
@@ -71,20 +72,14 @@ public class BackpackManager : MonoBehaviour
     {
         InteractableStats itemScript = item.GetComponent<InteractableStats>();
 
-        switch (itemScript.id)
-        {
-            case "sphere":
-                inventory.Add(itemScript.prefab);
+        inventory.Add(itemScript.prefab);
 
+        activeSlot.SetActive(true);
+        activeSlot.GetComponent<Image>().sprite = itemScript.sprite;
 
-                activeSlot.SetActive(true);
-                activeSlot.GetComponent<Image>().sprite = itemScript.sprite;
+        activeSlotInt = inventory.Count;
+        activeSlot = slots[activeSlotInt];
 
-                activeSlotInt = inventory.Count;
-                activeSlot = slots[activeSlotInt];
-
-                item.SetActive(false);
-                break;
-        }
+        item.SetActive(false);
     }
 }

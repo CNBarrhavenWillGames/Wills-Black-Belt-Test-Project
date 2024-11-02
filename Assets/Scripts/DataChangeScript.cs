@@ -5,7 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class DataChangeScript : MonoBehaviour
 {
-    public int type;
+
+    private enum buttonType
+    {
+        addOneDay = 1,
+        addTenRadiance = 2,
+        saveData = 3,
+        resetData = 4,
+    }
+
+    [SerializeField] private buttonType type;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,21 +30,28 @@ public class DataChangeScript : MonoBehaviour
 
     public void Change()
     {
-        if (type == 1)
+        switch (type)
         {
-            Debug.Log("Added One Day");
-            DataStorage.saveData.day += 1;
-        }
-        else if (type == 2) 
-        {
-            Debug.Log("Added Ten Radiance");
-            DataStorage.saveData.totalRadiance += 10;
-        }
-        else if (type == 3)
-        {
-            DataStorage.saveData.day += 1;
-            DataStorage.Save();
-            SceneManager.LoadScene(1);
+            case buttonType.addOneDay:
+                Debug.Log("Added One Day");
+                DataStorage.saveData.day += 1;
+                break;
+            case buttonType.addTenRadiance:
+                Debug.Log("Added Ten Radiance");
+                DataStorage.saveData.totalRadiance += 10;
+                break;
+            case buttonType.saveData:
+                DataStorage.saveData.day += 1;
+                DataStorage.Save();
+                SceneManager.LoadScene(1);
+                break;
+            case buttonType.resetData:
+                DataStorage.saveData.day = 0;
+                DataStorage.saveData.totalRadiance = 0;
+                DataStorage.saveData.totalFood = 0;
+                DataStorage.Save();
+                SceneManager.LoadScene(1);
+                break;
         }
     }
 

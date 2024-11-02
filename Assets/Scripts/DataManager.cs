@@ -35,13 +35,15 @@ public class DataManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             DataStorage.dayRadiance = 0;
+            DataStorage.dayFood = 0;
             dayCounter.text = "Day: " + DataStorage.saveData.day;
-            totalRadianceCounter.text = "Total Radiance: " + DataStorage.saveData.totalRadiance;
+            totalRadianceCounter.text = "Stashed Radiance: " + DataStorage.saveData.totalRadiance;
             currentRadianceCounter.text = "Inventory Radiance: " + DataStorage.dayRadiance;
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 0)
+        else if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2)
         {
             DataStorage.saveData.totalRadiance += DataStorage.dayRadiance;
+            DataStorage.saveData.totalFood += DataStorage.dayFood;
         }
     }
 }
