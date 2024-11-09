@@ -22,7 +22,7 @@ public class MovementScript : MonoBehaviour
     public float weight;
 
     [Header("Not Magic Numbers")]
-    public float groundCollisionRadius = 0.3f;
+    private float groundCollisionRadius = 0.3f;
     private float groundCollisionDistance = 0.1f;
     private float maxSpeed => CalculateMaxSpeed();
 
@@ -46,7 +46,7 @@ public class MovementScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    public void Update()
     {
         direction = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal"); // Get Input
 
@@ -73,7 +73,7 @@ public class MovementScript : MonoBehaviour
         transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * cameraRotation.sensitivity); // Rotates Player with Mouse Input
     }
 
-   void FixedUpdate()
+   private void FixedUpdate()
    {
         if (grounded)   // Both functions perform the same actions, but it might be handy to differentiate them later.   
         {
