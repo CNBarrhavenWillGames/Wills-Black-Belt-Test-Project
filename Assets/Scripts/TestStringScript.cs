@@ -4,9 +4,9 @@ using TMPro;
 using UnityEngine;
 public class TestStringScript : MonoBehaviour
 {
-    public TMP_Text text;
+    [SerializeField] private TMP_Text text;
 
-    public enum textType
+    private enum textType
     {
         day = 0,
         totalRadiance = 1,
@@ -15,18 +15,12 @@ public class TestStringScript : MonoBehaviour
         dayFood = 4,
     }
 
-    public textType id;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    [SerializeField] private textType id;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        switch (id)
+        switch (id) // Sets the display based off its ID.
         {
             case textType.day:
                 text.text = "Day " + DataStorage.saveData.day + " Results:";

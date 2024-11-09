@@ -7,31 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour
 {
-    public TMP_Text dayCounter;
-    public TMP_Text totalRadianceCounter;
-    public TMP_Text currentRadianceCounter;
-    public TMP_Text totalFoodCounter;
-    public TMP_Text currentFoodCounter;
+    [Header ("Counters")]
+    [SerializeField] private TMP_Text dayCounter;
+    [SerializeField] private TMP_Text totalRadianceCounter;
+    [SerializeField] private TMP_Text currentRadianceCounter;
+    [SerializeField] private TMP_Text totalFoodCounter;
+    [SerializeField] private TMP_Text currentFoodCounter;
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        // assume we have a vaslid data stirng
         LoadData();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void SaveData()
+    private void SaveData()
     {
         DataStorage.Save();
     }
 
-    public void LoadData()
+    /// <summary>
+    /// This function loads the player's save data from DataStorage.
+    /// </summary>
+    private void LoadData()
     {
         DataStorage.Load();
         if (SceneManager.GetActiveScene().buildIndex == 1)

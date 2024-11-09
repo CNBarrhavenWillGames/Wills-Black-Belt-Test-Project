@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using System.Text.Json;
-// #FIXME
 
 [System.Serializable]   // need this so it's allowed to be made to a json
 public class SaveData
@@ -72,5 +71,4 @@ public static class DataStorage
         PlayerPrefs.SetString("saveData", saveData.ToJsonString());
         Debug.Log("reset data: " + saveData.ToJsonString());
     }
-    // probably add a reset progress type function or somethin for debugging. 
 }

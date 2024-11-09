@@ -4,29 +4,24 @@ using UnityEngine;
 
 public class DayObjectScript : MonoBehaviour
 {
-    public int id;
-
-    // Start is called before the first frame update
-    void Start()
+    private enum objectType
     {
-        if (id == 1)
-        {
-            if (DataStorage.saveData.day % 2 == 0)
-            {
-                gameObject.transform.Rotate(0, 90, 0);
-                print("Rotated");
-            }
-
-        }
-        else if (id == 2) {
-
-        }
-        
+        rotatingWall = 0,
     }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private objectType id;
+
+    // Start is called before the first frame update
+    private void Start()
     {
-        
+        switch (id) // Sets the special object based off its ID.
+        {
+            case objectType.rotatingWall:
+                if (DataStorage.saveData.day % 2 == 0)
+                {
+                    gameObject.transform.Rotate(0, 90, 0);
+                }
+                break;
+        }
     }
 }

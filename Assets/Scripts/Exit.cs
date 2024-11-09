@@ -5,21 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter(Collision collision) // Handles Finishing the Day
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //tag
         if (collision.gameObject.tag == "Player")
         {
             DataStorage.Save();

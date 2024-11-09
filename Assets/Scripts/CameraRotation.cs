@@ -6,15 +6,10 @@ using UnityEngine;
 public class CameraRotation : MonoBehaviour
 {
     public int sensitivity = 1;
-    public float rotation;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float rotation;
 
     // Update is called once per frame
-    void Update()
+    void Update() // Handles the Rotation of the Camera
     {
         rotation += Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
         rotation = Mathf.Clamp(rotation, -80, 80);

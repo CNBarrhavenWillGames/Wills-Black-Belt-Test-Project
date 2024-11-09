@@ -5,24 +5,19 @@ using UnityEngine;
 
 public class CounterScript : MonoBehaviour
 {
-    public TMP_Text text;
-    public enum counterType
+    [SerializeField] private TMP_Text text;
+    private enum counterType
     {
         currentRadiance = 0,
         currentFood = 1,
     }
 
-    public counterType id;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private counterType id;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        switch (id)
+        switch (id) // Sets the counter based on its ID.
         {
             case counterType.currentRadiance:
                 text.text = "Current Radiance: " + DataStorage.dayRadiance;

@@ -7,46 +7,52 @@ using UnityEngine.Android;
 public class MovementScript : MonoBehaviour
 {
     [Header("Player Physics")]
-    public GameObject player;
-    public Rigidbody rb;
-    public float acceleration;
-    public Vector3 direction;
-    public int jumpHeight;
-    public bool grounded;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float acceleration;
+    [SerializeField] private Vector3 direction;
+    [SerializeField] private int jumpHeight;
+    [SerializeField] private bool grounded;
 
-    public CameraRotation cameraRotation;
+    [SerializeField] private CameraRotation cameraRotation;
 
     [Header("Movement")]
-    public int baseMaxSpeed;
+    [SerializeField] private int baseMaxSpeed;
     public const int maxWeight = 100;
     public float weight;
 
     [Header("Not Magic Numbers")]
     public float groundCollisionRadius = 0.3f;
-    public float groundCollisionDistance = 0.1f;
-    public float maxSpeed => CalculateMaxSpeed();
+    private float groundCollisionDistance = 0.1f;
+    private float maxSpeed => CalculateMaxSpeed();
 
-    public LayerMask groundedMask;
+    [SerializeField] private LayerMask groundedMask;
 
     private Vector3 gizmosPosition;
 
-    public float CalculateMaxSpeed()
+    /// <summary>
+    /// This function calculates the new max speed of the player based on weight.
+    /// </summary>
+    /// <returns>New Max Speed</returns>
+    private float CalculateMaxSpeed()
     {
         return baseMaxSpeed * ((maxWeight - weight) / maxWeight);
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = player.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        direction = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
+        direction = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal"); // Get Input
+
         Debug.DrawRay(player.transform.position, Vector3.down, Color.red);
-        if (Physics.SphereCast(player.transform.position, groundCollisionRadius, Vector3.down, out RaycastHit hit, groundCollisionDistance, groundedMask))
+
+        if (Physics.SphereCast(player.transform.position, groundCollisionRadius, Vector3.down, out RaycastHit hit, groundCollisionDistance, groundedMask)) // Ground Collision Detection
         {
             gizmosPosition = hit.point;
             Gizmos.color = Color.magenta;
@@ -64,24 +70,26 @@ public class MovementScript : MonoBehaviour
             rb.AddForce(0,jumpHeight * 10,0);
         }
 
-        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * cameraRotation.sensitivity);
+        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * cameraRotation.sensitivity); // Rotates Player with Mouse Input
     }
 
    void FixedUpdate()
    {
-        if (grounded)      
+        if (grounded)   // Both functions perform the same actions, but it might be handy to differentiate them later.   
         {
-            GroundedMovement(); // later use?
+            GroundedMovement();
         }
         else
         {
-            AirMovement(); // later use?
+            AirMovement();
         }
    }
-
-    void GroundedMovement()
+    /// <summary>
+    /// This function handles player movement on the ground.
+    /// </summary>
+    private void GroundedMovement()
     {
-        Vector2 xzVelocity = new Vector3(rb.velocity.x, rb.velocity.z);
+        Vector2 xzVelocity = new Vector3(rb.velocity.x, rb.velocity.z); 
         float yVelo = rb.velocity.y;
 
 
@@ -106,7 +114,10 @@ public class MovementScript : MonoBehaviour
         rb.velocity = newVelocity;
     }
 
-    void AirMovement()
+    /// <summary>
+    /// This function handles player movement in the air.
+    /// </summary>
+    private void AirMovement()
     {
         Vector2 xzVelocity = new Vector3(rb.velocity.x, rb.velocity.z);
         float yVelo = rb.velocity.y;

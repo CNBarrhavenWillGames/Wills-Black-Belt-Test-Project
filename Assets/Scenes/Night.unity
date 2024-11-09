@@ -2617,8 +2617,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayCounter: {fileID: 344542270}
-  totalRadianceCounter: {fileID: 0}
-  currentRadianceCounter: {fileID: 0}
+  totalRadianceCounter: {fileID: 96926311}
+  currentRadianceCounter: {fileID: 305296561}
+  totalFoodCounter: {fileID: 59895814}
+  currentFoodCounter: {fileID: 2075877979}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -3599,9 +3599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64911c0960a369140b7beff3c23252b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeSlot: {fileID: 0}
-  slot: {fileID: 0}
-  activeSlotInt: 0
+  slot: {fileID: 1000205346609797526, guid: 1b472208d40dcde4a81e4e0944044ea0, type: 3}
   selectedSlot: 0
   inventory: []
   slots: []
@@ -4704,7 +4702,6 @@ MonoBehaviour:
   baseMaxSpeed: 4
   weight: 0
   groundCollisionRadius: 0.3
-  groundCollisionDistance: 0.8
   groundedMask:
     serializedVersion: 2
     m_Bits: 65
@@ -5168,7 +5165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3629f6117accfbc4d9633ac18d539aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 0
 --- !u!4 &1293885352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3472981905835180998, guid: be72630ab10a2524683bbca60ff06e44, type: 3}

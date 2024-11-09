@@ -5,23 +5,16 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    public GameObject interactObject;
-    public InteractableStats interactScript;
+    [SerializeField] private GameObject interactObject;
+    [SerializeField] private InteractableStats interactScript;
 
-    public MovementScript movementScript;
-    public BackpackManager backpackManager;
-
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    [SerializeField] private MovementScript movementScript;
+    [SerializeField] private BackpackManager backpackManager;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactObject)
+        if (Input.GetKeyDown(KeyCode.E) && interactObject) // Picks up the item and grabs its data.
         {
             interactScript = interactObject.GetComponent<InteractableStats>();
             if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
@@ -32,12 +25,10 @@ public class Interact : MonoBehaviour
                 backpackManager.AddSprite(interactObject);
                 interactObject = null;
             }
-         
-
         }
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider) // Get the object data.
     {
         if (collider.gameObject.tag == "Interactable")
         {
@@ -45,7 +36,7 @@ public class Interact : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) // Get rid of the object data.
     {
         if (other.gameObject.tag == "Interactable")
         {

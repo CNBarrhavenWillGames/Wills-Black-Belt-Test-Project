@@ -16,21 +16,9 @@ public class DataChangeScript : MonoBehaviour
 
     [SerializeField] private buttonType type;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Change()
     {
-        switch (type)
+        switch (type) // Sets button type based off its ID.
         {
             case buttonType.addOneDay:
                 Debug.Log("Added One Day");
