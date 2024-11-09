@@ -22,8 +22,8 @@ public class MovementScript : MonoBehaviour
     public float weight;
 
     [Header("Not Magic Numbers")]
-    private float groundCollisionRadius = 0.3f;
-    private float groundCollisionDistance = 0.1f;
+    [SerializeField] private float groundCollisionRadius = 0.4f;
+    [SerializeField] private float groundCollisionDistance = 0.9f;
     private float maxSpeed => CalculateMaxSpeed();
 
     [SerializeField] private LayerMask groundedMask;
@@ -57,6 +57,7 @@ public class MovementScript : MonoBehaviour
             gizmosPosition = hit.point;
             Gizmos.color = Color.magenta;
             grounded = true;
+            print("Grounded");
         } 
         else
         {
