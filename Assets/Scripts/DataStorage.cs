@@ -44,6 +44,8 @@ public static class DataStorage
     public static int dayRadiance;
     public static int dayFood;
 
+    public static List<string> dayItemIDs;
+
     public static void Save()
     {
         Debug.Log("saved data: " + saveData.ToJsonString());
@@ -52,6 +54,7 @@ public static class DataStorage
 
     public static void Load()
     {
+
         string dataString = PlayerPrefs.GetString("saveData");
         if (string.IsNullOrEmpty(dataString) || dataString == "{}")
         {

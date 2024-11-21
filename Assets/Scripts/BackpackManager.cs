@@ -11,7 +11,7 @@ public class BackpackManager : MonoBehaviour
 
     [SerializeField] private int selectedSlot;
 
-    [SerializeField] private List<GameObject> inventory;
+    public List<GameObject> inventory;
     [SerializeField] private List<GameObject> slots;
 
     [SerializeField] private MovementScript movementScript; 
@@ -79,6 +79,8 @@ public class BackpackManager : MonoBehaviour
         slots.Add(newSlot);
 
         item.SetActive(false);
+
+
     }
 
     /// <summary>

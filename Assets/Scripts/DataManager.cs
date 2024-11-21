@@ -15,7 +15,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] private TMP_Text currentFoodCounter;
     
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         LoadData();
     }
@@ -35,16 +35,28 @@ public class DataManager : MonoBehaviour
         {
             DataStorage.dayRadiance = 0;
             DataStorage.dayFood = 0;
+            DataStorage.dayItemIDs = new List<string>();
+
             dayCounter.text = "Day: " + DataStorage.saveData.day;
             totalRadianceCounter.text = "Stashed Radiance: " + DataStorage.saveData.totalRadiance;
             currentRadianceCounter.text = "Inventory Radiance: " + DataStorage.dayRadiance;
             totalFoodCounter.text = "Stashed Food: " + (DataStorage.saveData.totalFood / 10);
             currentFoodCounter.text = "Inventory Food: " + DataStorage.dayFood;
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2)
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             DataStorage.saveData.totalRadiance += DataStorage.dayRadiance;
             DataStorage.saveData.totalFood += DataStorage.dayFood;
+            DataStorage.saveData.totalFood -= 10;
+
+            if (DataStorage.saveData.totalFood < 0)
+            {
+                DataStorage.saveData.day = 0;
+                DataStorage.saveData.totalRadiance = 0;
+                DataStorage.saveData.totalFood = 0;
+                DataStorage.Save();
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }

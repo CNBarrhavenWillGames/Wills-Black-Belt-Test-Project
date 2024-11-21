@@ -12,6 +12,15 @@ public class DataChangeScript : MonoBehaviour
         addTenRadiance = 2,
         saveData = 3,
         resetData = 4,
+        newGame = 5,
+    }
+
+    private void Start()
+    {
+        if (DataStorage.saveData.day == 0 && type == buttonType.saveData && SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     [SerializeField] private buttonType type;
@@ -35,6 +44,14 @@ public class DataChangeScript : MonoBehaviour
                 break;
             case buttonType.resetData:
                 DataStorage.saveData.day = 0;
+                DataStorage.saveData.totalRadiance = 0;
+                DataStorage.saveData.totalFood = 0;
+                DataStorage.dayItemIDs = new List<string>();
+                DataStorage.Save();
+                SceneManager.LoadScene(1);
+                break;
+            case buttonType.newGame:
+                DataStorage.saveData.day = 1;
                 DataStorage.saveData.totalRadiance = 0;
                 DataStorage.saveData.totalFood = 0;
                 DataStorage.Save();
