@@ -71,6 +71,10 @@ public static class DataStorage
     public static void Reset()
     {
         saveData = new SaveData();
+        dayItemIDs = new List<string>();
+        dayRadiance = 0;
+        dayFood = 0;
+        dayItems = 0;
         PlayerPrefs.SetString("saveData", saveData.ToJsonString());
         Debug.Log("reset data: " + saveData.ToJsonString());
     }

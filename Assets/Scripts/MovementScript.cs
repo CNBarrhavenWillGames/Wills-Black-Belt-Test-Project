@@ -57,7 +57,6 @@ public class MovementScript : MonoBehaviour
             gizmosPosition = hit.point;
             Gizmos.color = Color.magenta;
             grounded = true;
-            print("Grounded");
         } 
         else
         {

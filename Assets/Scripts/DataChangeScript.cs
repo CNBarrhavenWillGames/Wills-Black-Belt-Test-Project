@@ -43,10 +43,10 @@ public class DataChangeScript : MonoBehaviour
                 SceneManager.LoadScene(1);
                 break;
             case buttonType.resetData:
-                DataStorage.saveData.day = 0;
-                DataStorage.saveData.totalRadiance = 0;
-                DataStorage.saveData.totalFood = 0;
-                DataStorage.dayItemIDs = new List<string>();
+                DataStorage.Reset();
+                DataStorage.dayRadiance = 0;
+                DataStorage.dayFood = 0;
+                DataStorage.dayItems = 0;
                 DataStorage.Save();
                 SceneManager.LoadScene(1);
                 break;
