@@ -7,6 +7,7 @@ public class DayObjectScript : MonoBehaviour
     private enum objectType
     {
         rotatingWall = 0,
+        dissapear = 1,
     }
 
     [SerializeField] private objectType id;
@@ -20,6 +21,12 @@ public class DayObjectScript : MonoBehaviour
                 if (DataStorage.saveData.day % 2 == 0)
                 {
                     gameObject.transform.Rotate(0, 90, 0);
+                }
+                break;
+            case objectType.dissapear:
+                if (DataStorage.saveData.day % 2 == 0) 
+                {
+                    gameObject.SetActive(true);
                 }
                 break;
         }

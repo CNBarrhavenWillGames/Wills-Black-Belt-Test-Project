@@ -24,6 +24,24 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.E) && interactObject) // Picks up the item and grabs its data.
+        {
+            interactScript = interactObject.GetComponent<InteractableStats>();
+            if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
+            {
+                movementScript.weight += interactScript.weight;
+                DataStorage.dayRadiance += interactScript.radiance;
+                DataStorage.dayFood += interactScript.food;
+                backpackManager.AddSprite(interactObject);
+                interactObject = null;
+            }
+        }
+    }
+
+
+    private void FixedUpdate() 
+    {
         if (damageTimer >= damageRate)
         {
             if (damaged)
@@ -45,23 +63,7 @@ public class Interact : MonoBehaviour
         {
             damageTimer++;
         }
-
-        print(health);
-
-        if (Input.GetKeyDown(KeyCode.E) && interactObject) // Picks up the item and grabs its data.
-        {
-            interactScript = interactObject.GetComponent<InteractableStats>();
-            if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
-            {
-                movementScript.weight += interactScript.weight;
-                DataStorage.dayRadiance += interactScript.radiance;
-                DataStorage.dayFood += interactScript.food;
-                backpackManager.AddSprite(interactObject);
-                interactObject = null;
-            }
-        }
     }
-
     private void OnTriggerEnter(Collider collider) // Get the object data.
     {
         if (collider.gameObject.tag == "Interactable")
