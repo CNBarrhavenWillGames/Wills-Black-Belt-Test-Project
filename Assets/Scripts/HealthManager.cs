@@ -9,9 +9,6 @@ public class HealthManager : MonoBehaviour
     public Interact interactScript;
     public GameObject healthBar;
     [SerializeField] private Rect rect;
-
-    private int hue;
-//float h, s, v;
     // Start is called before the first frame update
     void Start()
     {

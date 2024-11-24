@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
@@ -12,9 +14,16 @@ public class TimeManager : MonoBehaviour
     private float start;
     private float end;
     [SerializeField] private GameObject endObject;
+
+    [SerializeField] private GameObject counter;
+    [SerializeField] private int countdownStart = 10800;
+    [SerializeField] private int lengthOfDay = 14400;
+
+    [SerializeField] private GameObject gameLight;
     // Start is called before the first frame update
     void Start()
     {
+        counter.SetActive(false);
         rect = symbol.GetComponent<RectTransform>();
         start = rect.position.x;
         end = endObject.GetComponent<RectTransform>().position.x;
@@ -27,11 +36,16 @@ public class TimeManager : MonoBehaviour
         
     }
 
-    private void FixedUpdate() 
+    private void FixedUpdate() // assume 60fps?
     {
         time += 1;
-        float newX = Mathf.Lerp(start, end, time/18000); // Each day is 5 minutes.
-        if (newX >= 18000)
+        float newX = Mathf.Lerp(start, end, time/lengthOfDay); // Each day is 4 minutes.
+        Color color = gameLight.GetComponent<Light>().color;
+        Color.RGBToHSV(color, out float h, out float s, out float v);
+        s = time / 14400;
+        gameLight.GetComponent<Light>().color = Color.HSVToRGB(h, s, v, false);
+
+        if (time >= lengthOfDay)
         {
             DataStorage.saveData.day = 0;
             DataStorage.saveData.totalRadiance = 0;
@@ -39,6 +53,11 @@ public class TimeManager : MonoBehaviour
             DataStorage.dayItemIDs = new List<string>();
             DataStorage.Reset();
             SceneManager.LoadScene(0);
+        }
+        if (time >= countdownStart) 
+        {
+            counter.SetActive(true);
+            counter.GetComponent<TMP_Text>().text = Mathf.Floor((lengthOfDay - time) / 60).ToString(); 
         }
         symbol.GetComponent<RectTransform>().position = new Vector2(newX, rect.position.y);
     }
