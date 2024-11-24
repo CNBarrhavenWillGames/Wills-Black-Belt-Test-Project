@@ -26,7 +26,7 @@ public class DayObjectScript : MonoBehaviour
             case objectType.dissapear:
                 if (DataStorage.saveData.day % 2 == 0) 
                 {
-                    gameObject.SetActive(true);
+                    gameObject.SetActive(false);
                 }
                 break;
         }
