@@ -38,7 +38,8 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate() // assume 60fps?
     {
-        time += 1;
+        time += 1; // use deltaTime, but for some reason it doesn't work
+        print(time);
         float newX = Mathf.Lerp(start, end, time/lengthOfDay); // Each day is 4 minutes.
         Color color = gameLight.GetComponent<Light>().color;
         Color.RGBToHSV(color, out float h, out float s, out float v);
