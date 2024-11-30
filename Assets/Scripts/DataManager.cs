@@ -51,6 +51,8 @@ public class DataManager : MonoBehaviour
 
             if (DataStorage.saveData.totalFood < 0)
             {
+                DataStorage.Reset();
+                DataStorage.lost = true;
                 DataStorage.saveData.day = 0;
                 DataStorage.saveData.totalRadiance = 0;
                 DataStorage.saveData.totalFood = 0;

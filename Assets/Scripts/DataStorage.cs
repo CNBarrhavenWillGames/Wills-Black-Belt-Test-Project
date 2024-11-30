@@ -12,7 +12,9 @@ public class SaveData
     public List<string> totalItems;
     public int totalRadiance;
     public int totalFood;
-
+    [SerializeField]
+    public List<bool> activeObjects;
+    public bool extraHealth;
     // Generic constructor. sets things to default values
     public SaveData()
     {
@@ -20,6 +22,8 @@ public class SaveData
         totalItems = new List<string>();
         totalRadiance = 0;
         totalFood = 0;
+        activeObjects = new List<bool>();
+        extraHealth = false;
     }
 
     // turn a saveData instance into a string
@@ -46,6 +50,8 @@ public static class DataStorage
 
     public static List<string> dayItemIDs;
 
+    public static bool lost = false;
+
     public static void Save()
     {
         Debug.Log("saved data: " + saveData.ToJsonString());
@@ -71,6 +77,7 @@ public static class DataStorage
     public static void Reset()
     {
         saveData = new SaveData();
+
         dayItemIDs = new List<string>();
         dayRadiance = 0;
         dayFood = 0;

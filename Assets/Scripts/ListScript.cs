@@ -9,6 +9,7 @@ public class ListScript : MonoBehaviour
     [SerializeField] private GameObject largeRadianceSprite;
     [SerializeField] private GameObject smallFoodSprite;
     [SerializeField] private GameObject largeFoodSprite;
+    [SerializeField] private GameObject healthSprite;
     // Start is called before the first frame update
     private void Start()
     {
@@ -31,6 +32,9 @@ public class ListScript : MonoBehaviour
                     Instantiate(smallFoodSprite, gameObject.transform);
                     break;
                 case "largeFood":
+                    print("Large Food");
+                    break;
+                case "health":
                     print("Large Food");
                     break;
             }

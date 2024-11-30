@@ -15,6 +15,7 @@ public class TestStringScript : MonoBehaviour
         dayFood = 4,
         loadGame = 5,
         totalFood2 = 6,
+        title = 7,
     }
 
     [SerializeField] private textType id;
@@ -44,6 +45,17 @@ public class TestStringScript : MonoBehaviour
                 break;
             case textType.totalFood2:
                 text.text = "Total Food Units: " + (DataStorage.saveData.totalFood / 10);
+                break;
+            case textType.title:
+                if (DataStorage.lost == true)
+                {
+                    text.text = "You lost!";
+                }
+                else
+                {
+                    text.text = "Welcome to the game.";
+                }
+                
                 break;
         }
         

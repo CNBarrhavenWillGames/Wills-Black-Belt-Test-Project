@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Interact : MonoBehaviour
 {
-    [SerializeField] private GameObject interactObject;
+    [SerializeField] private List<GameObject> interactObjects;
     [SerializeField] private InteractableStats interactScript;
 
     [SerializeField] private MovementScript movementScript;
@@ -19,22 +19,52 @@ public class Interact : MonoBehaviour
     private bool damaged;
     public int health = 100;
     public int totalHealth = 100;
-    
+
+    private void Start()
+    {
+        if (DataStorage.saveData.extraHealth == true)
+        {
+            totalHealth = 200;
+            health = 200;
+        }
+        interactObjects = new List<GameObject>();
+    }
 
     // Update is called once per frame
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.E) && interactObject) // Picks up the item and grabs its data.
+
+        if (Input.GetKeyDown(KeyCode.E) && interactObjects.Count > 0) // Picks up the item and grabs its data.
         {
+            GameObject closestObject = null;
+            float distance = float.PositiveInfinity;
+            for (int i = 0; i < interactObjects.Count; i++)
+            {
+                if (Vector3.Distance(interactObjects[i].transform.position, gameObject.transform.position) <= distance)
+                {
+                    closestObject = interactObjects[i];
+                    distance = Vector3.Distance(interactObjects[i].transform.position, gameObject.transform.position);
+                }
+            }
+            GameObject interactObject = closestObject;
+
             interactScript = interactObject.GetComponent<InteractableStats>();
+
+            if (interactScript.id == "health")
+            {
+                DataStorage.saveData.extraHealth = true;
+            }
+
             if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
             {
                 movementScript.weight += interactScript.weight;
                 DataStorage.dayRadiance += interactScript.radiance;
                 DataStorage.dayFood += interactScript.food;
                 backpackManager.AddSprite(interactObject);
+                interactObjects.Remove(interactObject);
                 interactObject = null;
+                
             }
         }
     }
@@ -54,6 +84,7 @@ public class Interact : MonoBehaviour
                     DataStorage.saveData.totalFood = 0;
                     DataStorage.dayItemIDs = new List<string>();
                     DataStorage.Reset();
+                    DataStorage.lost = true;
                     SceneManager.LoadScene(0);
                 }
             }
@@ -68,7 +99,7 @@ public class Interact : MonoBehaviour
     {
         if (collider.gameObject.tag == "Interactable")
         {
-            interactObject = collider.gameObject;
+            interactObjects.Add(collider.gameObject);
         }
 
         if (collider.gameObject.tag == "Damage")
@@ -81,7 +112,7 @@ public class Interact : MonoBehaviour
     {
         if (other.gameObject.tag == "Interactable")
         {
-            interactObject = null;
+            interactObjects.Remove(other.gameObject);
         }
 
         if (other.gameObject.tag == "Damage")

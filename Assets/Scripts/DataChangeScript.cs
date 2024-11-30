@@ -44,6 +44,7 @@ public class DataChangeScript : MonoBehaviour
                 break;
             case buttonType.resetData:
                 DataStorage.Reset();
+                DataStorage.lost = true;
                 DataStorage.dayRadiance = 0;
                 DataStorage.dayFood = 0;
                 DataStorage.dayItems = 0;
@@ -51,17 +52,11 @@ public class DataChangeScript : MonoBehaviour
                 SceneManager.LoadScene(1);
                 break;
             case buttonType.newGame:
+                DataStorage.Reset();
                 DataStorage.saveData.day = 1;
-                DataStorage.saveData.totalRadiance = 0;
-                DataStorage.saveData.totalFood = 0;
                 DataStorage.Save();
                 SceneManager.LoadScene(1);
                 break;
         }
-    }
-
-    public void ResetData()
-    {
-        DataStorage.Reset();
     }
 }

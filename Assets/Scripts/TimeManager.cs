@@ -16,17 +16,18 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private GameObject endObject;
 
     [SerializeField] private GameObject counter;
-    [SerializeField] private int countdownStart = 10800;
-    [SerializeField] private int lengthOfDay = 14400;
+    [SerializeField] private int lengthOfDay;
+    private int countdownStart;
 
     [SerializeField] private GameObject gameLight;
     // Start is called before the first frame update
     void Start()
     {
+        countdownStart = lengthOfDay - 60;
         counter.SetActive(false);
         rect = symbol.GetComponent<RectTransform>();
-        start = rect.position.x;
-        end = endObject.GetComponent<RectTransform>().position.x;
+        start = rect.anchoredPosition.x;
+        end = endObject.GetComponent<RectTransform>().anchoredPosition.x;
         time = 0;
     }
 
@@ -38,12 +39,13 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate() // assume 60fps?
     {
-        time += 1; // use deltaTime, but for some reason it doesn't work
+        time += Time.fixedDeltaTime; 
+
         print(time);
         float newX = Mathf.Lerp(start, end, time/lengthOfDay); // Each day is 4 minutes.
         Color color = gameLight.GetComponent<Light>().color;
         Color.RGBToHSV(color, out float h, out float s, out float v);
-        s = time / 14400;
+        s = time / lengthOfDay;
         gameLight.GetComponent<Light>().color = Color.HSVToRGB(h, s, v, false);
 
         if (time >= lengthOfDay)
@@ -53,13 +55,14 @@ public class TimeManager : MonoBehaviour
             DataStorage.saveData.totalFood = 0;
             DataStorage.dayItemIDs = new List<string>();
             DataStorage.Reset();
+            DataStorage.lost = true;
             SceneManager.LoadScene(0);
         }
         if (time >= countdownStart) 
         {
             counter.SetActive(true);
-            counter.GetComponent<TMP_Text>().text = Mathf.Floor((lengthOfDay - time) / 60).ToString(); 
+            counter.GetComponent<TMP_Text>().text = Mathf.Floor(lengthOfDay - time).ToString(); 
         }
-        symbol.GetComponent<RectTransform>().position = new Vector2(newX, rect.position.y);
+        symbol.GetComponent<RectTransform>().anchoredPosition = new Vector2(newX, rect.anchoredPosition.y);
     }
 }

@@ -93,6 +93,11 @@ public class BackpackManager : MonoBehaviour
 
         inventory[selectedSlot].SetActive(true);
 
+        if (inventory[selectedSlot].GetComponent<InteractableStats>().id == "health")
+        {
+            DataStorage.saveData.extraHealth = false;
+        }
+
         inventory.RemoveAt(selectedSlot);
         slots.RemoveAt(selectedSlot);
     }
