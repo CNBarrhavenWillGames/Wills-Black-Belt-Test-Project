@@ -17,6 +17,7 @@ public class TestStringScript : MonoBehaviour
         totalFood2 = 6,
         title = 7,
         weight = 8,
+        items = 9,
     }
 
     [SerializeField] private textType id;
@@ -60,6 +61,9 @@ public class TestStringScript : MonoBehaviour
                 break;
             case textType.weight:
                 text.text = "Weight: " + movementScript.weight + " (" + (100 - movementScript.weight)+ "% Movement Speed)";
+                break;
+            case textType.items:
+                text.text = "Items Collected: " + DataStorage.dayItemIDs.Count + " (Total: " + DataStorage.saveData.totalItems + ")";
                 break;
         }
         

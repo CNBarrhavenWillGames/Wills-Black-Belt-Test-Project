@@ -46,6 +46,7 @@ public class DataManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             DataStorage.saveData.totalRadiance += DataStorage.dayRadiance;
+            DataStorage.saveData.totalItems += DataStorage.dayItemIDs.Count;
             DataStorage.saveData.totalFood += DataStorage.dayFood;
             DataStorage.saveData.totalFood -= 10;
 
@@ -53,9 +54,9 @@ public class DataManager : MonoBehaviour
             {
                 DataStorage.Reset();
                 DataStorage.lost = true;
-                DataStorage.saveData.day = 0;
-                DataStorage.saveData.totalRadiance = 0;
-                DataStorage.saveData.totalFood = 0;
+                //DataStorage.saveData.day = 0;
+                //DataStorage.saveData.totalRadiance = 0;
+                //DataStorage.saveData.totalFood = 0;
                 DataStorage.Save();
                 SceneManager.LoadScene(0);
             }
