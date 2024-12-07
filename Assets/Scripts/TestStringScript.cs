@@ -5,7 +5,7 @@ using UnityEngine;
 public class TestStringScript : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
-
+    [SerializeField] private MovementScript movementScript;
     private enum textType
     {
         day = 0,
@@ -16,6 +16,7 @@ public class TestStringScript : MonoBehaviour
         loadGame = 5,
         totalFood2 = 6,
         title = 7,
+        weight = 8,
     }
 
     [SerializeField] private textType id;
@@ -56,6 +57,9 @@ public class TestStringScript : MonoBehaviour
                     text.text = "Welcome to the game.";
                 }
                 
+                break;
+            case textType.weight:
+                text.text = "Weight: " + movementScript.weight + " (" + (100 - movementScript.weight)+ "% Movement Speed)";
                 break;
         }
         

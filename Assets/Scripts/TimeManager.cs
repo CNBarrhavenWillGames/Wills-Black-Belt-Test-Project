@@ -41,7 +41,6 @@ public class TimeManager : MonoBehaviour
     {
         time += Time.fixedDeltaTime; 
 
-        print(time);
         float newX = Mathf.Lerp(start, end, time/lengthOfDay); // Each day is 4 minutes.
         Color color = gameLight.GetComponent<Light>().color;
         Color.RGBToHSV(color, out float h, out float s, out float v);

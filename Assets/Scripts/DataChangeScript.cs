@@ -13,6 +13,7 @@ public class DataChangeScript : MonoBehaviour
         saveData = 3,
         resetData = 4,
         newGame = 5,
+        loadFromMenu = 6,
     }
 
     private void Start()
@@ -38,7 +39,7 @@ public class DataChangeScript : MonoBehaviour
                 DataStorage.saveData.totalRadiance += 10;
                 break;
             case buttonType.saveData:
-                DataStorage.saveData.day += 1;
+                DataStorage.saveData.day++;
                 DataStorage.Save();
                 SceneManager.LoadScene(1);
                 break;
@@ -55,6 +56,9 @@ public class DataChangeScript : MonoBehaviour
                 DataStorage.Reset();
                 DataStorage.saveData.day = 1;
                 DataStorage.Save();
+                SceneManager.LoadScene(1);
+                break;
+            case buttonType.loadFromMenu:
                 SceneManager.LoadScene(1);
                 break;
         }

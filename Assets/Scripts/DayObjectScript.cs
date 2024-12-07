@@ -26,7 +26,8 @@ public class DayObjectScript : MonoBehaviour
             case objectType.dissapear:
                 if (DataStorage.saveData.day % 2 == 0) 
                 {
-                    gameObject.SetActive(false);
+                    gameObject.GetComponent<BoxCollider>().enabled = false;
+                    gameObject.GetComponent<MeshRenderer>().material.color = new Color(gameObject.GetComponent<MeshRenderer>().material.color.r, gameObject.GetComponent<MeshRenderer>().material.color.g, gameObject.GetComponent<MeshRenderer>().material.color.b, 0.5f);
                 }
                 break;
         }

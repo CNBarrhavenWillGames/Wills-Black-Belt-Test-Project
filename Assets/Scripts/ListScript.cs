@@ -35,7 +35,7 @@ public class ListScript : MonoBehaviour
                     print("Large Food");
                     break;
                 case "health":
-                    print("Large Food");
+                    Instantiate(healthSprite, gameObject.transform);
                     break;
             }
         }

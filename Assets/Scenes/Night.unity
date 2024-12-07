@@ -1419,6 +1419,7 @@ MonoBehaviour:
   largeRadianceSprite: {fileID: 6873713037398430722, guid: 156a7584748680b4582c7b3bcb40dca8, type: 3}
   smallFoodSprite: {fileID: 3660614342913354127, guid: d7ecffbb4082f4a4f9c0e50f7f9a9f26, type: 3}
   largeFoodSprite: {fileID: 0}
+  healthSprite: {fileID: 5757199405266078801, guid: 770bd0f85cb69fb43943a20bcff33243, type: 3}
 --- !u!222 &1699917319
 CanvasRenderer:
   m_ObjectHideFlags: 0
