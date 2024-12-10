@@ -23,11 +23,11 @@ public class OpenMenuScript : MonoBehaviour
         menuOpen = !menuOpen;
         if (menuOpen)
         {
-            text.text = "Close Menu";
+            text.text = "Close Settings";
         }
         else
         {
-            text.text = "Open Menu";
+            text.text = "Open Settiings";
         }
 
     }
