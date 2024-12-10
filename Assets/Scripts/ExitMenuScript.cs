@@ -23,6 +23,7 @@ public class ExitMenuScript : MonoBehaviour
     {
         if (safety == true)
         {
+            DataStorage.lost = false;
             SceneManager.LoadScene(0);
         }
         safety = true;

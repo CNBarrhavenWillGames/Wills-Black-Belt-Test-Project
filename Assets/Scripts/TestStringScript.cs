@@ -18,6 +18,7 @@ public class TestStringScript : MonoBehaviour
         title = 7,
         weight = 8,
         items = 9,
+        field = 10,
     }
 
     [SerializeField] private textType id;
@@ -31,7 +32,7 @@ public class TestStringScript : MonoBehaviour
                 text.text = "Day " + DataStorage.saveData.day + " Results:";
                 break;
             case textType.totalRadiance:
-                text.text = "Total Radiance: " + DataStorage.saveData.totalRadiance + "/1000";
+                text.text = "Total Radiance: " + DataStorage.saveData.totalRadiance + "/100";
                 break;
             case textType.dayRadiance:
                 text.text = "Radiance Collected: " + DataStorage.dayRadiance;
@@ -55,15 +56,23 @@ public class TestStringScript : MonoBehaviour
                 }
                 else
                 {
-                    text.text = "Welcome to the game.";
+                    text.text = "Infiltration";
                 }
                 
                 break;
             case textType.weight:
+                Color color = text.color;
+                Color.RGBToHSV(color, out float h, out float s, out float v);
+                h = (100 - movementScript.weight) / 360;
+                print((100 - movementScript.weight) / 360);
+                text.color = Color.HSVToRGB(h, s, v, false);
                 text.text = "Weight: " + movementScript.weight + " (" + (100 - movementScript.weight)+ "% Movement Speed)";
                 break;
             case textType.items:
                 text.text = "Items Collected: " + DataStorage.dayItemIDs.Count + " (Total: " + DataStorage.saveData.totalItems + ")";
+                break;
+            case textType.field:
+                text.text = "There is " + (350 - DataStorage.saveData.totalRadiance) + " radiance left in the field.";
                 break;
         }
         

@@ -14,11 +14,12 @@ public class DataChangeScript : MonoBehaviour
         resetData = 4,
         newGame = 5,
         loadFromMenu = 6,
+        closeGame = 7,
     }
 
     private void Start()
     {
-        if (DataStorage.saveData.day == 0 && type == buttonType.saveData && SceneManager.GetActiveScene().buildIndex == 0)
+        if (DataStorage.saveData.day == 0 && type == buttonType.loadFromMenu && SceneManager.GetActiveScene().buildIndex == 0)
         {
             gameObject.SetActive(false);
         }
@@ -60,6 +61,9 @@ public class DataChangeScript : MonoBehaviour
                 break;
             case buttonType.loadFromMenu:
                 SceneManager.LoadScene(1);
+                break;
+            case buttonType.closeGame:
+                Application.Quit();
                 break;
         }
     }
