@@ -14,6 +14,8 @@ public class SliderScript : MonoBehaviour
     {
         sensitivity = 0,
         volume = 1,
+        invertX = 2,
+        invertY = 3,
     }
 
     [SerializeField] private sliderType type;
@@ -27,6 +29,26 @@ public class SliderScript : MonoBehaviour
                 break;
             case sliderType.volume:
                 gameObject.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Volume");
+                break;
+            case sliderType.invertX:
+                if (PlayerPrefs.GetInt("InvertX") == 0)
+                {
+                    gameObject.GetComponent<Toggle>().isOn = false;
+                }
+                else
+                {
+                    gameObject.GetComponent<Toggle>().isOn = true;
+                }
+                break;
+            case sliderType.invertY:
+                if (PlayerPrefs.GetInt("InvertY") == 0)
+                {
+                    gameObject.GetComponent<Toggle>().isOn = false;
+                }
+                else
+                {
+                    gameObject.GetComponent<Toggle>().isOn = true;
+                }
                 break;
         }
     }
@@ -53,5 +75,31 @@ public class SliderScript : MonoBehaviour
             audioMixer.SetFloat("Music Volume", gameObject.GetComponent<Slider>().value);
         }
         PlayerPrefs.SetFloat("Volume", gameObject.GetComponent<Slider>().value);
+    }
+
+    public void InvertX()
+    {
+        if (gameObject.GetComponent<Toggle>().isOn)
+        {
+            PlayerPrefs.SetInt("InvertX", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("InvertX", 0);
+        }
+
+    }
+
+    public void InvertY()
+    {
+        if (gameObject.GetComponent<Toggle>().isOn)
+        {
+            PlayerPrefs.SetInt("InvertY", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("InvertY", 0);
+        }
+
     }
 }

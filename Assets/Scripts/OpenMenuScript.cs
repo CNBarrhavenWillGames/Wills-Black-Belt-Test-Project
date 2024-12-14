@@ -27,7 +27,7 @@ public class OpenMenuScript : MonoBehaviour
         }
         else
         {
-            text.text = "Open Settiings";
+            text.text = "Open Settings";
         }
 
     }

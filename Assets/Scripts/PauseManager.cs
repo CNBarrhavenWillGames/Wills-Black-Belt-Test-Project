@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        print(Cursor.visible);
         if (menu)
         {
             if (openMenuScript.menuOpen)
@@ -39,12 +39,15 @@ public class PauseManager : MonoBehaviour
         
         if (paused)
         {
+
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
                 music.Pause();
             }
-            
+
             pauseMenu.SetActive(true);
             
         }
@@ -52,9 +55,12 @@ public class PauseManager : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 Time.timeScale = 1;
                 music.UnPause();
             }
+            
             pauseMenu.SetActive(false);
         }
     }

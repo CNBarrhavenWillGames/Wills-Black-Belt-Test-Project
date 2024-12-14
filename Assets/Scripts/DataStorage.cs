@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 [System.Serializable]   // need this so it's allowed to be made to a json
@@ -50,6 +51,7 @@ public static class DataStorage
     public static List<string> dayItemIDs;
 
     public static bool lost = false;
+
 
     public static void Save()
     {

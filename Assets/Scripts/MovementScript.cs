@@ -30,6 +30,7 @@ public class MovementScript : MonoBehaviour
 
     private Vector3 gizmosPosition;
 
+    private int invert;
     /// <summary>
     /// This function calculates the new max speed of the player based on weight.
     /// </summary>
@@ -48,6 +49,15 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        if (PlayerPrefs.GetInt("InvertX") == 1)
+        {
+            invert = -1;
+        }
+        else
+        {
+            invert = 1;
+        }
+
         direction = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal"); // Get Input
 
         Debug.DrawRay(player.transform.position, Vector3.down, Color.red);
@@ -70,7 +80,7 @@ public class MovementScript : MonoBehaviour
             rb.AddForce(0,jumpHeight * 10,0);
         }
 
-        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * cameraRotation.sensitivity); // Rotates Player with Mouse Input
+        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * invert, 0) * Time.deltaTime * cameraRotation.sensitivity); // Rotates Player with Mouse Input
     }
 
    private void FixedUpdate()
