@@ -54,6 +54,7 @@ public class DataManager : MonoBehaviour
             {
                 DataStorage.Reset();
                 DataStorage.lost = true;
+                DataStorage.loseReason = LoseReason.starvation;
                 //DataStorage.saveData.day = 0;
                 //DataStorage.saveData.totalRadiance = 0;
                 //DataStorage.saveData.totalFood = 0;

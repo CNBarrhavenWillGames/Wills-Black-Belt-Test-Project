@@ -55,6 +55,7 @@ public class TimeManager : MonoBehaviour
             DataStorage.dayItemIDs = new List<string>();
             DataStorage.Reset();
             DataStorage.lost = true;
+            DataStorage.loseReason = LoseReason.outOfTime;
             SceneManager.LoadScene(0);
         }
         if (time >= countdownStart) 

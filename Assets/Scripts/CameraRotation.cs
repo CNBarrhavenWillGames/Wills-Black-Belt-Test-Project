@@ -24,12 +24,10 @@ public class CameraRotation : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             sensitivity -= 5;
-            print("Sensitivity:" + sensitivity);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
             sensitivity += 5;
-            print("Sensitivity:" + sensitivity);
         }
 
         rotation += Input.GetAxis("Mouse Y") * invert * Time.deltaTime * sensitivity;

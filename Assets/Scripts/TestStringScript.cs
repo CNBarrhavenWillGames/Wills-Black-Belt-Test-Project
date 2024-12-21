@@ -52,7 +52,17 @@ public class TestStringScript : MonoBehaviour
             case textType.title:
                 if (DataStorage.lost == true)
                 {
-                    text.text = "You lost!";
+                    switch (DataStorage.loseReason) {
+                        case LoseReason.starvation:
+                            text.text = "You starved!";
+                            break;
+                        case LoseReason.emptyHealth:
+                            text.text = "You died!";
+                            break;
+                        case LoseReason.outOfTime:
+                            text.text = "You ran out of time!";
+                            break;
+                    }
                 }
                 else
                 {
@@ -64,7 +74,6 @@ public class TestStringScript : MonoBehaviour
                 Color color = text.color;
                 Color.RGBToHSV(color, out float h, out float s, out float v);
                 h = (100 - movementScript.weight) / 360;
-                print((100 - movementScript.weight) / 360);
                 text.color = Color.HSVToRGB(h, s, v, false);
                 text.text = "Weight: " + movementScript.weight + " (" + (100 - movementScript.weight)+ "% Movement Speed)";
                 break;

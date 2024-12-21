@@ -14,7 +14,6 @@ public class ListScript : MonoBehaviour
     private void Start()
     {
         int length = DataStorage.dayItemIDs.Count;
-        print(DataStorage.dayItemIDs.Count);
 
         for (int i = 0; i < length; i++)
         {

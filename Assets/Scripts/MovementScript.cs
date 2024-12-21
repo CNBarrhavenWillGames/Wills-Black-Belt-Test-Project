@@ -24,6 +24,9 @@ public class MovementScript : MonoBehaviour
     [Header("Not Magic Numbers")]
     [SerializeField] private float groundCollisionRadius = 0.4f;
     [SerializeField] private float groundCollisionDistance = 0.9f;
+    [SerializeField] private float jumpBuffer = 0.5f;
+    [SerializeField] private float coyoteTime = 0.5f;
+    [SerializeField] private float jumpCooldown = 0.2f;
     private float maxSpeed => CalculateMaxSpeed();
 
     [SerializeField] private LayerMask groundedMask;
@@ -31,6 +34,13 @@ public class MovementScript : MonoBehaviour
     private Vector3 gizmosPosition;
 
     private int invert;
+
+    private float LastJumpInputTime;
+    private float LastJumpSuccessTime;
+    private float LastGroundedTime;
+
+
+
     /// <summary>
     /// This function calculates the new max speed of the player based on weight.
     /// </summary>
@@ -44,6 +54,7 @@ public class MovementScript : MonoBehaviour
     private void Start()
     {
         rb = player.GetComponent<Rigidbody>();
+        LastJumpInputTime = float.NegativeInfinity;
     }
 
     // Update is called once per frame
@@ -62,11 +73,13 @@ public class MovementScript : MonoBehaviour
 
         Debug.DrawRay(player.transform.position, Vector3.down, Color.red);
 
-        if (Physics.SphereCast(player.transform.position, groundCollisionRadius, Vector3.down, out RaycastHit hit, groundCollisionDistance, groundedMask)) // Ground Collision Detection
+        if (Physics.SphereCast(player.transform.position, groundCollisionRadius, Vector3.down, out RaycastHit hit, groundCollisionDistance, groundedMask)
+            && Time.time - LastJumpSuccessTime > jumpCooldown) // Ground Collision Detection
         {
             gizmosPosition = hit.point;
             Gizmos.color = Color.magenta;
             grounded = true;
+            LastGroundedTime = Time.time;
         } 
         else
         {
@@ -75,9 +88,9 @@ public class MovementScript : MonoBehaviour
             grounded = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && grounded) 
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            rb.AddForce(0,jumpHeight * 10,0);
+            LastJumpInputTime = Time.time;
         }
 
         transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * invert, 0) * Time.deltaTime * cameraRotation.sensitivity); // Rotates Player with Mouse Input
@@ -85,9 +98,21 @@ public class MovementScript : MonoBehaviour
 
    private void FixedUpdate()
    {
-        if (grounded)   // Both functions perform the same actions, but it might be handy to differentiate them later.   
+
+        if (Time.time - LastGroundedTime <= coyoteTime)   // Both functions perform the same actions, but it might be handy to differentiate them later.   
         {
             GroundedMovement();
+
+            if (Time.time - LastJumpInputTime <= jumpBuffer)
+            {
+                print(Time.time - LastJumpInputTime + "/" + jumpBuffer);
+                LastJumpInputTime = float.NegativeInfinity;
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+
+                rb.AddForce(0, jumpHeight * 10, 0);
+                LastJumpSuccessTime = Time.time;
+            }
         }
         else
         {

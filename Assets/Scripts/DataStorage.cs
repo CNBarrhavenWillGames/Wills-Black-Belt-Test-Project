@@ -39,6 +39,14 @@ public class SaveData
     }
 }
 
+public enum LoseReason
+{
+    none = 0,
+    starvation = 1,
+    emptyHealth = 2,
+    outOfTime = 3,
+}
+
 public static class DataStorage
 {
 
@@ -50,7 +58,10 @@ public static class DataStorage
 
     public static List<string> dayItemIDs;
 
-    public static bool lost = false;
+    public static bool lost = false; // could merge this and below
+
+
+    public static LoseReason loseReason = LoseReason.none;
 
 
     public static void Save()
@@ -83,6 +94,7 @@ public static class DataStorage
         dayRadiance = 0;
         dayFood = 0;
         dayItems = 0;
+
         PlayerPrefs.SetString("saveData", saveData.ToJsonString());
         Debug.Log("reset data: " + saveData.ToJsonString());
     }

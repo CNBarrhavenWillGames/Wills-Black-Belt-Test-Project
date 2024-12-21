@@ -85,6 +85,7 @@ public class Interact : MonoBehaviour
                     DataStorage.dayItemIDs = new List<string>();
                     DataStorage.Reset();
                     DataStorage.lost = true;
+                    DataStorage.loseReason = LoseReason.emptyHealth;
                     SceneManager.LoadScene(0);
                 }
             }
