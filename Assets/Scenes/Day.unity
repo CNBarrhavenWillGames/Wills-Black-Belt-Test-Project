@@ -31943,6 +31943,9 @@ MonoBehaviour:
   weight: 0
   groundCollisionRadius: 0.4
   groundCollisionDistance: 0.9
+  jumpBuffer: 0.5
+  coyoteTime: 0.5
+  jumpCooldown: 0.2
   groundedMask:
     serializedVersion: 2
     m_Bits: 64
