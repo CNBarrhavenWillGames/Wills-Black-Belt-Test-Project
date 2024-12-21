@@ -39,6 +39,7 @@ public class MovementScript : MonoBehaviour
     private float LastJumpSuccessTime;
     private float LastGroundedTime;
 
+    [SerializeField] private float DagansDeltaLastGroundedTime;
 
 
     /// <summary>
@@ -94,6 +95,8 @@ public class MovementScript : MonoBehaviour
         }
 
         transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * invert, 0) * Time.deltaTime * cameraRotation.sensitivity); // Rotates Player with Mouse Input
+
+        DagansDeltaLastGroundedTime = Time.time - LastGroundedTime;
     }
 
    private void FixedUpdate()
@@ -107,6 +110,16 @@ public class MovementScript : MonoBehaviour
             {
                 print(Time.time - LastJumpInputTime + "/" + jumpBuffer);
                 LastJumpInputTime = float.NegativeInfinity;
+                //HI WILL we fixed it
+                // you know how you set LastJumpInputTime to NegativeInfinity to 'consume' the jump input
+                // since NegativeInfinity seconds is a long time ago, so we definetly don't want to jump
+                // you also have to set LastGroundedTime to NegativeInfinity to 'consume' the 'grounded'
+                // since if we were last on the ground infinite time ago that's a really long time and coyote can't run/jump
+                // we don't need to do a similar LastJumpSuccessTime reset, since the = Time.time does that?
+                // idk seems to work probably.
+                // -Dagan
+                // Amanda Was Here
+                LastGroundedTime = float.NegativeInfinity;
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
 
