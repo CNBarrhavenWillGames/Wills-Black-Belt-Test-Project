@@ -3511,7 +3511,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 2800000, guid: 03d0538de6e24c0f819bfc9ce084dfa9, type: 3}
+    m_Texture: {fileID: 2800000, guid: c9cdb16bd09fd4f43aab02af71a83fd5, type: 3}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
@@ -11960,7 +11960,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 2800000, guid: 03d0538de6e24c0f819bfc9ce084dfa9, type: 3}
+    m_Texture: {fileID: 2800000, guid: c9cdb16bd09fd4f43aab02af71a83fd5, type: 3}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
@@ -31943,12 +31943,13 @@ MonoBehaviour:
   weight: 0
   groundCollisionRadius: 0.4
   groundCollisionDistance: 0.9
-  jumpBuffer: 0.5
-  coyoteTime: 0.5
+  jumpBuffer: 0.2
+  coyoteTime: 0.2
   jumpCooldown: 0.2
   groundedMask:
     serializedVersion: 2
     m_Bits: 64
+  DagansDeltaLastGroundedTime: 0
 --- !u!136 &1121637514
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -46353,7 +46354,7 @@ ParticleSystemRenderer:
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -47069,7 +47070,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 2800000, guid: 03d0538de6e24c0f819bfc9ce084dfa9, type: 3}
+    m_Texture: {fileID: 2800000, guid: c9cdb16bd09fd4f43aab02af71a83fd5, type: 3}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
