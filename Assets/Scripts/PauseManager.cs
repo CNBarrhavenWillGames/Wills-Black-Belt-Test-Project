@@ -71,6 +71,5 @@ public class PauseManager : MonoBehaviour
             
             pauseMenu.SetActive(false);
         }
-        print(Cursor.lockState);
     }
 }

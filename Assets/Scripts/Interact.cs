@@ -14,6 +14,7 @@ public class Interact : MonoBehaviour
 
     [Header("Health Variables")]
     [SerializeField] private int damageStrength = 5;
+    [SerializeField] private int damageStrength2 = 30;
     [SerializeField] private int damageRate = 30;
     private int damageTimer;
     private bool damaged;
@@ -106,6 +107,11 @@ public class Interact : MonoBehaviour
         if (collider.gameObject.tag == "Damage")
         {
             damaged = true;
+        }
+        if (collider.gameObject.tag == "Damage2")
+        {
+            health -= damageStrength2;
+            collider.gameObject.SetActive(false);
         }
     }
 

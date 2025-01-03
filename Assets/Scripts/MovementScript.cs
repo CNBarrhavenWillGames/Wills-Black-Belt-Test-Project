@@ -12,7 +12,7 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float acceleration;
     [SerializeField] private Vector3 direction;
     [SerializeField] private int jumpHeight;
-    [SerializeField] private bool grounded;
+    //[SerializeField] private bool grounded;
 
     [SerializeField] private CameraRotation cameraRotation;
 
@@ -79,14 +79,14 @@ public class MovementScript : MonoBehaviour
         {
             gizmosPosition = hit.point;
             Gizmos.color = Color.magenta;
-            grounded = true;
+            //grounded = true;
             LastGroundedTime = Time.time;
         } 
         else
         {
             Gizmos.color = Color.red;
             gizmosPosition = player.transform.position + Vector3.down * groundCollisionDistance;
-            grounded = false;
+            //grounded = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) 
