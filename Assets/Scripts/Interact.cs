@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Security;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Interact : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Interact : MonoBehaviour
 
     [SerializeField] private MovementScript movementScript;
     [SerializeField] private BackpackManager backpackManager;
+    [SerializeField] private GameObject proximityPrompt;
 
     [Header("Health Variables")]
     [SerializeField] private int damageStrength = 5;
@@ -101,6 +103,8 @@ public class Interact : MonoBehaviour
     {
         if (collider.gameObject.tag == "Interactable")
         {
+            // insert proximity prompt data
+            proximityPrompt.SetActive(true);
             interactObjects.Add(collider.gameObject);
         }
 
@@ -119,6 +123,7 @@ public class Interact : MonoBehaviour
     {
         if (other.gameObject.tag == "Interactable")
         {
+            proximityPrompt.SetActive(false);
             interactObjects.Remove(other.gameObject);
         }
 

@@ -1587,11 +1587,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c6b04debcea7e4d9bc07ee6dfc5de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallRadianceSprite: {fileID: 7420917418545659918, guid: ede82f872e3083b449ec12559426f84d, type: 3}
-  largeRadianceSprite: {fileID: 6873713037398430722, guid: 156a7584748680b4582c7b3bcb40dca8, type: 3}
-  smallFoodSprite: {fileID: 3660614342913354127, guid: d7ecffbb4082f4a4f9c0e50f7f9a9f26, type: 3}
-  largeFoodSprite: {fileID: 0}
-  healthSprite: {fileID: 5757199405266078801, guid: 770bd0f85cb69fb43943a20bcff33243, type: 3}
+  spriteObjects:
+  - {fileID: 7420917418545659918, guid: ede82f872e3083b449ec12559426f84d, type: 3}
+  - {fileID: 6873713037398430722, guid: 156a7584748680b4582c7b3bcb40dca8, type: 3}
+  - {fileID: 3660614342913354127, guid: d7ecffbb4082f4a4f9c0e50f7f9a9f26, type: 3}
+  - {fileID: 5757199405266078801, guid: 770bd0f85cb69fb43943a20bcff33243, type: 3}
+  - {fileID: 8401215505322740891, guid: ad848adcec39f3249a8442a410d353c3, type: 3}
+  - {fileID: 4632717264274284564, guid: 6dc5f01d3050f2245a87d9e77f55dc5a, type: 3}
+  - {fileID: 4632717264274284564, guid: 6dc5f01d3050f2245a87d9e77f55dc5a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ids: []
+  things: []
 --- !u!222 &1699917319
 CanvasRenderer:
   m_ObjectHideFlags: 0

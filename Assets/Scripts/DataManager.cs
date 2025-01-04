@@ -40,15 +40,16 @@ public class DataManager : MonoBehaviour
             dayCounter.text = "Day: " + DataStorage.saveData.day;
             totalRadianceCounter.text = "Stashed Radiance: " + DataStorage.saveData.totalRadiance;
             currentRadianceCounter.text = "Inventory Radiance: " + DataStorage.dayRadiance;
-            totalFoodCounter.text = "Stashed Food: " + (DataStorage.saveData.totalFood / 10);
+            totalFoodCounter.text = "Stashed Food: " + (DataStorage.saveData.totalFood / 100f);
             currentFoodCounter.text = "Inventory Food: " + DataStorage.dayFood;
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
+            Cursor.lockState = CursorLockMode.None;
             DataStorage.saveData.totalRadiance += DataStorage.dayRadiance;
             DataStorage.saveData.totalItems += DataStorage.dayItemIDs.Count;
             DataStorage.saveData.totalFood += DataStorage.dayFood;
-            DataStorage.saveData.totalFood -= 10;
+            DataStorage.saveData.totalFood -= 100;
 
             if (DataStorage.saveData.totalFood < 0)
             {
