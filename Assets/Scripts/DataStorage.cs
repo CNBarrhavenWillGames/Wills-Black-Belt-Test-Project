@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]   // need this so it's allowed to be made to a json
 public class SaveData
 {
-    public int day; // turns out in this language and environement having { get; set; } actually breaks the json, contrary to the forum
+    public int day; // turns out in this language and environment having { get; set; } actually breaks the json, contrary to the forum
     [SerializeField] // need this to mark list as a serializable thing (bc list is more complicated than ints kinda) (I think)
     public int totalItems;
     public int totalRadiance;
@@ -15,6 +15,7 @@ public class SaveData
     [SerializeField]
     public List<bool> activeObjects;
     public bool extraHealth;
+    public int salmonEaten;
     // Generic constructor. sets things to default values
     public SaveData()
     {
@@ -24,6 +25,7 @@ public class SaveData
         totalFood = 0;
         activeObjects = new List<bool>();
         extraHealth = false;
+        salmonEaten = 0;
     }
 
     // turn a saveData instance into a string

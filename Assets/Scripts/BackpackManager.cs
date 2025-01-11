@@ -13,7 +13,9 @@ public class BackpackManager : MonoBehaviour
     public List<GameObject> inventory;
     [SerializeField] private List<GameObject> slots;
 
-    [SerializeField] private MovementScript movementScript; 
+    [SerializeField] private MovementScript movementScript;
+
+    [SerializeField] private Interact interactScript;
 
     // Update is called once per frame
     private void Update()
@@ -87,6 +89,9 @@ public class BackpackManager : MonoBehaviour
     /// </summary>
     private void DropItem()
     {
+
+        interactScript.editProximityPrompt();
+
         GameObject destroyUISlot = slots[selectedSlot];
         Destroy(destroyUISlot);
 
@@ -96,6 +101,13 @@ public class BackpackManager : MonoBehaviour
         {
             DataStorage.saveData.extraHealth = false;
         }
+
+        if (inventory[selectedSlot].GetComponent<InteractableStats>().id == "salmon")
+        {
+            DataStorage.saveData.salmonEaten = 0;
+        }
+
+
 
         inventory.RemoveAt(selectedSlot);
         slots.RemoveAt(selectedSlot);

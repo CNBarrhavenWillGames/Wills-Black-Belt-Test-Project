@@ -19,6 +19,7 @@ public class TestStringScript : MonoBehaviour
         weight = 8,
         items = 9,
         field = 10,
+        salmon = 11,
     }
 
     [SerializeField] private textType id;
@@ -82,6 +83,16 @@ public class TestStringScript : MonoBehaviour
                 break;
             case textType.field:
                 text.text = "There is " + (350 - DataStorage.saveData.totalRadiance) + " radiance left in the field.";
+                break;
+            case textType.salmon:
+                if (DataStorage.saveData.salmonEaten > 0)
+                {
+                    text.text = "Salmon Left: " + (DataStorage.saveData.salmonEaten * 0.25) + " Food Units";
+                }
+                else
+                {
+                    text.text = "";
+                }
                 break;
         }
         

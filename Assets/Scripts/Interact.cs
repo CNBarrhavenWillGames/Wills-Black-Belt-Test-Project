@@ -36,21 +36,12 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
+        print("Nearby Objects:" + interactObjects.Count);
 
         if (Input.GetKeyDown(KeyCode.E) && interactObjects.Count > 0) // Picks up the item and grabs its data.
         {
-            GameObject closestObject = null;
-            float distance = float.PositiveInfinity;
-            for (int i = 0; i < interactObjects.Count; i++)
-            {
-                if (Vector3.Distance(interactObjects[i].transform.position, gameObject.transform.position) <= distance)
-                {
-                    closestObject = interactObjects[i];
-                    distance = Vector3.Distance(interactObjects[i].transform.position, gameObject.transform.position);
-                }
-            }
-            GameObject interactObject = closestObject;
+
+            GameObject interactObject = checkDistance();
 
             interactScript = interactObject.GetComponent<InteractableStats>();
 
@@ -59,6 +50,12 @@ public class Interact : MonoBehaviour
                 DataStorage.saveData.extraHealth = true;
             }
 
+            if (interactScript.id == "salmon")
+            {
+                DataStorage.saveData.salmonEaten = 3;
+            }
+
+
             if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
             {
                 movementScript.weight += interactScript.weight;
@@ -66,6 +63,8 @@ public class Interact : MonoBehaviour
                 DataStorage.dayFood += interactScript.food;
                 backpackManager.AddSprite(interactObject);
                 interactObjects.Remove(interactObject);
+
+                editProximityPrompt();
                 interactObject = null;
                 
             }
@@ -103,9 +102,11 @@ public class Interact : MonoBehaviour
     {
         if (collider.gameObject.tag == "Interactable")
         {
-            // insert proximity prompt data
-            proximityPrompt.SetActive(true);
             interactObjects.Add(collider.gameObject);
+
+            editProximityPrompt();
+
+            proximityPrompt.SetActive(true);
         }
 
         if (collider.gameObject.tag == "Damage")
@@ -121,15 +122,54 @@ public class Interact : MonoBehaviour
 
     private void OnTriggerExit(Collider other) // Get rid of the object data.
     {
+
+
         if (other.gameObject.tag == "Interactable")
         {
-            proximityPrompt.SetActive(false);
+
             interactObjects.Remove(other.gameObject);
+
+            if (interactObjects.Count <= 0)
+            {
+                proximityPrompt.SetActive(false);
+            }
+            else
+            {
+                editProximityPrompt();
+            }
+
         }
 
         if (other.gameObject.tag == "Damage")
         {
             damaged = false;
         }
+    }
+
+    private GameObject checkDistance()
+    {
+        GameObject closestObject = null;
+        float distance = float.PositiveInfinity;
+        for (int i = 0; i < interactObjects.Count; i++)
+        {
+            if (Vector3.Distance(interactObjects[i].transform.position, gameObject.transform.position) <= distance)
+            {
+                closestObject = interactObjects[i];
+                distance = Vector3.Distance(interactObjects[i].transform.position, gameObject.transform.position);
+            }
+        }
+
+        GameObject interactObject = closestObject;
+        return interactObject;
+    }
+    /// <summary>
+    /// Edit the Proximity Prompt Data
+    /// </summary>
+    public void editProximityPrompt() 
+    {
+        proximityPrompt.transform.GetChild(0).GetComponent<TMP_Text>().text = checkDistance().gameObject.name;
+        proximityPrompt.transform.GetChild(1).GetComponent<TMP_Text>().text = "Weight: " + checkDistance().GetComponent<InteractableStats>().weight;
+        proximityPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = "Radiance " + checkDistance().GetComponent<InteractableStats>().radiance.ToString();
+        proximityPrompt.transform.GetChild(3).GetComponent<TMP_Text>().text = "Food: " + (checkDistance().GetComponent<InteractableStats>().food / 100).ToString();
     }
 }

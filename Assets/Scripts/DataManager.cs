@@ -49,6 +49,12 @@ public class DataManager : MonoBehaviour
             DataStorage.saveData.totalRadiance += DataStorage.dayRadiance;
             DataStorage.saveData.totalItems += DataStorage.dayItemIDs.Count;
             DataStorage.saveData.totalFood += DataStorage.dayFood;
+            if (DataStorage.saveData.salmonEaten > 0)
+            {
+                DataStorage.saveData.totalFood += 25;
+                DataStorage.saveData.salmonEaten -= 1;
+            }
+
             DataStorage.saveData.totalFood -= 100;
 
             if (DataStorage.saveData.totalFood < 0)

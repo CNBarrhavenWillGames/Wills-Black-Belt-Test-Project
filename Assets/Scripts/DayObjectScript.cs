@@ -7,7 +7,7 @@ public class DayObjectScript : MonoBehaviour
     private enum objectType
     {
         rotatingWall = 0,
-        dissapear = 1,
+        disappear = 1,
     }
 
     [SerializeField] private objectType id;
@@ -23,7 +23,7 @@ public class DayObjectScript : MonoBehaviour
                     gameObject.transform.Rotate(0, 90, 0);
                 }
                 break;
-            case objectType.dissapear:
+            case objectType.disappear:
                 if (DataStorage.saveData.day % 2 == 0) 
                 {
                     gameObject.GetComponent<BoxCollider>().enabled = false;
