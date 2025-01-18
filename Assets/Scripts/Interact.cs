@@ -15,8 +15,6 @@ public class Interact : MonoBehaviour
     [SerializeField] private BackpackManager backpackManager;
     [SerializeField] private GameObject proximityPrompt;
 
-    [SerializeField] private GameObject hermesBootsObject;
-
     [Header("Health Variables")]
     [SerializeField] private int damageStrength = 5;
     [SerializeField] private int damageStrength2 = 30;
