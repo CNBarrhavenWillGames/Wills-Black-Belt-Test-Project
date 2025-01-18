@@ -4,6 +4,7 @@ using System.Net.Security;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class Interact : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Interact : MonoBehaviour
     [SerializeField] private MovementScript movementScript;
     [SerializeField] private BackpackManager backpackManager;
     [SerializeField] private GameObject proximityPrompt;
+
+    [SerializeField] private GameObject hermesBootsObject;
 
     [Header("Health Variables")]
     [SerializeField] private int damageStrength = 5;
@@ -30,6 +33,7 @@ public class Interact : MonoBehaviour
             totalHealth = 200;
             health = 200;
         }
+
         interactObjects = new List<GameObject>();
     }
 
@@ -50,6 +54,11 @@ public class Interact : MonoBehaviour
                 DataStorage.saveData.extraHealth = true;
             }
 
+            if (interactScript.id == "hermesBoots")
+            {
+                DataStorage.saveData.hermesBoots = true;
+            }
+
             if (interactScript.id == "salmon")
             {
                 DataStorage.saveData.salmonEaten = 3;
@@ -64,7 +73,10 @@ public class Interact : MonoBehaviour
                 backpackManager.AddSprite(interactObject);
                 interactObjects.Remove(interactObject);
 
+                proximityPrompt.SetActive(false);
                 editProximityPrompt();
+                
+
                 interactObject = null;
                 
             }
@@ -165,11 +177,26 @@ public class Interact : MonoBehaviour
     /// <summary>
     /// Edit the Proximity Prompt Data
     /// </summary>
-    public void editProximityPrompt() 
-    {
-        proximityPrompt.transform.GetChild(0).GetComponent<TMP_Text>().text = checkDistance().gameObject.name;
-        proximityPrompt.transform.GetChild(1).GetComponent<TMP_Text>().text = "Weight: " + checkDistance().GetComponent<InteractableStats>().weight;
-        proximityPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = "Radiance " + checkDistance().GetComponent<InteractableStats>().radiance.ToString();
-        proximityPrompt.transform.GetChild(3).GetComponent<TMP_Text>().text = "Food: " + (checkDistance().GetComponent<InteractableStats>().food / 100).ToString();
+    public void editProximityPrompt()
+    { 
+        GameObject closestObject = checkDistance();
+
+
+        if (closestObject == null)
+        {
+            proximityPrompt.SetActive(false);
+            return;
+        }
+
+        proximityPrompt.SetActive(true);
+
+        
+        proximityPrompt.transform.GetChild(0).GetComponent<TMP_Text>().text = closestObject.name;
+        proximityPrompt.transform.GetChild(1).GetComponent<TMP_Text>().text = "Weight: " + closestObject.GetComponent<InteractableStats>().weight;
+        proximityPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = "Radiance " + closestObject.GetComponent<InteractableStats>().radiance.ToString();
+        proximityPrompt.transform.GetChild(3).GetComponent<TMP_Text>().text = "Food: " + (closestObject.GetComponent<InteractableStats>().food / 100f).ToString();
+        proximityPrompt.transform.GetChild(4).GetComponent<Image>().sprite = closestObject.GetComponent<InteractableStats>().sprite;
+
+
     }
 }

@@ -569,10 +569,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radiance: 0
-  food: 0
-  weight: 0
+  food: 25
+  weight: 5
   sprite: {fileID: 21300000, guid: c8bfa49cab3c5144db36edc3779b97cd, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 2699036303504529591}
   id: pizza
 --- !u!1 &4176180288947666584
 GameObject:

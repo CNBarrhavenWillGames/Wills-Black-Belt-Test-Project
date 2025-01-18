@@ -36,13 +36,13 @@ public class TestStringScript : MonoBehaviour
                 text.text = "Total Radiance: " + DataStorage.saveData.totalRadiance + "/100";
                 break;
             case textType.dayRadiance:
-                text.text = "Radiance Collected: " + DataStorage.dayRadiance;
+                text.text = "Radiance Collected Today: " + DataStorage.dayRadiance;
                 break;
             case textType.totalFood:
                 text.text = ((DataStorage.saveData.totalFood / 100f) + 1) + " - 1";
                 break;
             case textType.dayFood:
-                text.text = "Food Collected: " + (DataStorage.dayFood / 100f);
+                text.text = "Food Collected Today: " + (DataStorage.dayFood / 100f);
                 break;
             case textType.loadGame:
                 text.text = "Start from Day " + (DataStorage.saveData.day);

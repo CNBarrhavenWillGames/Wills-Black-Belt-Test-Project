@@ -90,7 +90,7 @@ public class BackpackManager : MonoBehaviour
     private void DropItem()
     {
 
-        interactScript.editProximityPrompt();
+        // interactScript.editProximityPrompt();
 
         GameObject destroyUISlot = slots[selectedSlot];
         Destroy(destroyUISlot);
@@ -102,12 +102,15 @@ public class BackpackManager : MonoBehaviour
             DataStorage.saveData.extraHealth = false;
         }
 
+        if (inventory[selectedSlot].GetComponent<InteractableStats>().id == "hermesBoots")
+        {
+            DataStorage.saveData.hermesBoots = false;
+        }
+
         if (inventory[selectedSlot].GetComponent<InteractableStats>().id == "salmon")
         {
             DataStorage.saveData.salmonEaten = 0;
         }
-
-
 
         inventory.RemoveAt(selectedSlot);
         slots.RemoveAt(selectedSlot);

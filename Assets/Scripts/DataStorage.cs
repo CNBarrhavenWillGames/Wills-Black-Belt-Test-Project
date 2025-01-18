@@ -15,6 +15,7 @@ public class SaveData
     [SerializeField]
     public List<bool> activeObjects;
     public bool extraHealth;
+    public bool hermesBoots;
     public int salmonEaten;
     // Generic constructor. sets things to default values
     public SaveData()
@@ -25,6 +26,7 @@ public class SaveData
         totalFood = 0;
         activeObjects = new List<bool>();
         extraHealth = false;
+        hermesBoots = false;
         salmonEaten = 0;
     }
 

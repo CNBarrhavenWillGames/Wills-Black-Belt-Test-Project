@@ -6,6 +6,8 @@ using UnityEngine.Android;
 
 public class MovementScript : MonoBehaviour
 {
+    [SerializeField] private GameObject hermesBootsObject;
+
     [Header("Player Physics")]
     [SerializeField] private GameObject player;
     [SerializeField] private Rigidbody rb;
@@ -41,7 +43,6 @@ public class MovementScript : MonoBehaviour
 
     [SerializeField] private float DagansDeltaLastGroundedTime;
 
-
     /// <summary>
     /// This function calculates the new max speed of the player based on weight.
     /// </summary>
@@ -54,6 +55,12 @@ public class MovementScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        if (DataStorage.saveData.hermesBoots == true)
+        {
+            baseMaxSpeed = 6;
+            hermesBootsObject.SetActive(true);
+        }
+
         rb = player.GetComponent<Rigidbody>();
         LastJumpInputTime = float.NegativeInfinity;
     }
