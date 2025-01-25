@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 //using UnityEngine.UIElements;
 
 public class BackpackManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class BackpackManager : MonoBehaviour
     [SerializeField] private MovementScript movementScript;
 
     [SerializeField] private Interact interactScript;
+
+    [SerializeField] private TMP_Text selectedDisplay;
 
     // Update is called once per frame
     private void Update()
@@ -43,11 +46,13 @@ public class BackpackManager : MonoBehaviour
     {
         if (slots.Count == 0)
         {
+            selectedDisplay.gameObject.SetActive(false);
             selectedSlot = 0;
             return;
         }
         else
         {
+            selectedDisplay.gameObject.SetActive(true);
             selectedSlot = selectedSlot % slots.Count;
             
             if (selectedSlot < 0)
@@ -63,6 +68,10 @@ public class BackpackManager : MonoBehaviour
 
         slots[selectedSlot].GetComponent<Image>().color = Color.white;
 
+        GameObject selectedObject = inventory[selectedSlot];
+        InteractableStats selectedStats = selectedObject.GetComponent<InteractableStats>();
+
+        selectedDisplay.text = selectedObject.name + " Selected: " + selectedStats.weight + " Weight, " + selectedStats.radiance + " Radiance, " + (selectedStats.food / 100f) + " Food. " + selectedStats.property;
     }
 
     /// <summary>

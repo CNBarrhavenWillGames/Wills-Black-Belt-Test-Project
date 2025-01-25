@@ -47,20 +47,7 @@ public class Interact : MonoBehaviour
 
             interactScript = interactObject.GetComponent<InteractableStats>();
 
-            if (interactScript.id == "health")
-            {
-                DataStorage.saveData.extraHealth = true;
-            }
-
-            if (interactScript.id == "hermesBoots")
-            {
-                DataStorage.saveData.hermesBoots = true;
-            }
-
-            if (interactScript.id == "salmon")
-            {
-                DataStorage.saveData.salmonEaten = 3;
-            }
+            
 
 
             if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
@@ -73,7 +60,21 @@ public class Interact : MonoBehaviour
 
                 proximityPrompt.SetActive(false);
                 editProximityPrompt();
-                
+
+                if (interactScript.id == "health")
+                {
+                    DataStorage.saveData.extraHealth = true;
+                }
+
+                if (interactScript.id == "hermesBoots")
+                {
+                    DataStorage.saveData.hermesBoots = true;
+                }
+
+                if (interactScript.id == "salmon")
+                {
+                    DataStorage.saveData.salmonEaten = 3;
+                }
 
                 interactObject = null;
                 
@@ -188,12 +189,25 @@ public class Interact : MonoBehaviour
 
         proximityPrompt.SetActive(true);
 
+        InteractableStats closestScript = closestObject.GetComponent<InteractableStats>();
         
         proximityPrompt.transform.GetChild(0).GetComponent<TMP_Text>().text = closestObject.name;
-        proximityPrompt.transform.GetChild(1).GetComponent<TMP_Text>().text = "Weight: " + closestObject.GetComponent<InteractableStats>().weight;
-        proximityPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = "Radiance " + closestObject.GetComponent<InteractableStats>().radiance.ToString();
-        proximityPrompt.transform.GetChild(3).GetComponent<TMP_Text>().text = "Food: " + (closestObject.GetComponent<InteractableStats>().food / 100f).ToString();
-        proximityPrompt.transform.GetChild(4).GetComponent<Image>().sprite = closestObject.GetComponent<InteractableStats>().sprite;
+        proximityPrompt.transform.GetChild(1).GetComponent<TMP_Text>().text = "Weight: " + closestScript.weight;
+        proximityPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = "Radiance " + closestScript.radiance.ToString();
+        proximityPrompt.transform.GetChild(3).GetComponent<TMP_Text>().text = "Food: " + (closestScript.food / 100f).ToString();
+        proximityPrompt.transform.GetChild(4).GetComponent<Image>().sprite = closestScript.sprite;
+        proximityPrompt.transform.GetChild(5).GetComponent<TMP_Text>().text = closestScript.property;
+
+        if (closestObject.GetComponent<InteractableStats>().weight >= (100 - movementScript.weight))
+        {
+            proximityPrompt.transform.GetChild(5).GetComponent<TMP_Text>().text = "Too Heavy";
+            proximityPrompt.transform.GetChild(5).GetComponent<TMP_Text>().color = Color.red;
+        }
+        else
+        {
+            proximityPrompt.transform.GetChild(5).GetComponent<TMP_Text>().text = "E to Interact";
+            proximityPrompt.transform.GetChild(5).GetComponent<TMP_Text>().color = Color.blue;
+        }
 
 
     }

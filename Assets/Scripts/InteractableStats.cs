@@ -11,4 +11,5 @@ public class InteractableStats : MonoBehaviour
     public Sprite sprite;
     public GameObject prefab;
     public string id;
+    public string property;
 }

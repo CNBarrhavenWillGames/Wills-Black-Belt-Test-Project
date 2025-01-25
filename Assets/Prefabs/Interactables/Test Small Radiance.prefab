@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8686933902218168499}
   - component: {fileID: 4537445364482610675}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Test Small Radiance
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
