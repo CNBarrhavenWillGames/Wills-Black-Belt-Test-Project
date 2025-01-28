@@ -196,7 +196,7 @@ public class Interact : MonoBehaviour
         proximityPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = "Radiance " + closestScript.radiance.ToString();
         proximityPrompt.transform.GetChild(3).GetComponent<TMP_Text>().text = "Food: " + (closestScript.food / 100f).ToString();
         proximityPrompt.transform.GetChild(4).GetComponent<Image>().sprite = closestScript.sprite;
-        proximityPrompt.transform.GetChild(5).GetComponent<TMP_Text>().text = closestScript.property;
+        proximityPrompt.transform.GetChild(6).GetComponent<TMP_Text>().text = closestScript.property;
 
         if (closestObject.GetComponent<InteractableStats>().weight >= (100 - movementScript.weight))
         {
