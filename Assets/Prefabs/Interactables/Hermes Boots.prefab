@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 2924564972799448965}
   - component: {fileID: 7826063238377164475}
   - component: {fileID: 620252273623536705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hermes Boots
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -483,6 +483,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 2835dca9b23517a4aa0bca6b63a457ba, type: 3}
   prefab: {fileID: 7509282235079724607}
   id: hermesBoots
+  property: 
 --- !u!1001 &398433590140017562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -498,6 +499,10 @@ PrefabInstance:
     - target: {fileID: 1050376065180817291, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
       propertyPath: m_Name
       value: Hermes Boots (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050376065180817291, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1968545499274420701, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
       propertyPath: m_Mesh

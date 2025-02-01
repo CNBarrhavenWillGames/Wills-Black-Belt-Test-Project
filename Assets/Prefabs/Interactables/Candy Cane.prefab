@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 67653366382453460}
   - component: {fileID: 3097330152884023589}
   - component: {fileID: 1757331051679062493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Candy Cane
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -400,6 +400,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: d4b8d02298670234683bdbe43ccd8c2a, type: 3}
   prefab: {fileID: 5748558324698082230}
   id: candyCane
+  property: 
 --- !u!1001 &2431756391824827545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -415,6 +416,10 @@ PrefabInstance:
     - target: {fileID: 1050376065180817291, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
       propertyPath: m_Name
       value: Candy Cane (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050376065180817291, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1968545499274420701, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
       propertyPath: m_Mesh
@@ -524,6 +529,10 @@ PrefabInstance:
     - target: {fileID: 1050376065180817291, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
       propertyPath: m_Name
       value: Candy Cane (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050376065180817291, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1968545499274420701, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
       propertyPath: m_Mesh

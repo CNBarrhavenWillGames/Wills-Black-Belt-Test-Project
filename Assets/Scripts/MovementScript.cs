@@ -41,6 +41,8 @@ public class MovementScript : MonoBehaviour
     private float LastJumpSuccessTime;
     private float LastGroundedTime;
 
+    public GameObject minimap;
+
     [SerializeField] private float DagansDeltaLastGroundedTime;
 
     /// <summary>
@@ -59,6 +61,16 @@ public class MovementScript : MonoBehaviour
         {
             baseMaxSpeed = 6;
             hermesBootsObject.SetActive(true);
+        }
+
+        if (DataStorage.saveData.extraHealth == true)
+        {
+            gameObject.GetComponent<Renderer>().material.color = new Color(0f, 1, 1);
+        }
+
+        if (DataStorage.saveData.map == true)
+        {
+            minimap.SetActive(true);
         }
 
         rb = player.GetComponent<Rigidbody>();
@@ -115,7 +127,6 @@ public class MovementScript : MonoBehaviour
 
             if (Time.time - LastJumpInputTime <= jumpBuffer)
             {
-                print(Time.time - LastJumpInputTime + "/" + jumpBuffer);
                 LastJumpInputTime = float.NegativeInfinity;
                 //HI WILL we fixed it
                 // you know how you set LastJumpInputTime to NegativeInfinity to 'consume' the jump input

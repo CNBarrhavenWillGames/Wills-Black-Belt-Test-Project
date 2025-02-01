@@ -76,6 +76,20 @@ public class Interact : MonoBehaviour
                     DataStorage.saveData.salmonEaten = 3;
                 }
 
+                if (interactScript.id == "paperClip")
+                {
+                    DataStorage.saveData.paperclip = true;
+
+                }
+                if (interactScript.id == "map")
+                {
+                    DataStorage.saveData.map = true;
+                }
+                if (interactScript.id == "ketchup")
+                {
+                    DataStorage.saveData.ketchup = true;
+                }
+
                 interactObject = null;
                 
             }

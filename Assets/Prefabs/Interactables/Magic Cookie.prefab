@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6056773873216409126}
   - component: {fileID: 7022129715033343239}
   - component: {fileID: 7254416449599189150}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Magic Cookie
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -231,6 +231,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: e9d5cc834aa6a9349a520de4b9c43a71, type: 3}
   prefab: {fileID: 8597829343775748277}
   id: magicCookie
+  property: 
 --- !u!65 &7254416449599189150
 BoxCollider:
   m_ObjectHideFlags: 0

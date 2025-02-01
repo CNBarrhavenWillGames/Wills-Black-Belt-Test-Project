@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5854550532383810343}
   - component: {fileID: 3438510522084960806}
   - component: {fileID: 4329728040499118728}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lollipop
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: ec4eec60c7a20864b8333dd6ab8147d5, type: 3}
   prefab: {fileID: 7454170424398144062}
   id: lollipop
+  property: 
 --- !u!1 &7849960204000607892
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +247,10 @@ PrefabInstance:
     - target: {fileID: 1050376065180817291, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
       propertyPath: m_Name
       value: Sphere (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050376065180817291, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3472981905835180998, guid: be72630ab10a2524683bbca60ff06e44, type: 3}
       propertyPath: m_LocalScale.x

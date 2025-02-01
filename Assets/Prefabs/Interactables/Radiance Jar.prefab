@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8968446160617937784}
   - component: {fileID: 8203299601408441877}
   - component: {fileID: 479388319148144725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radiance Jar
   m_TagString: Interactable
   m_Icon: {fileID: 0}

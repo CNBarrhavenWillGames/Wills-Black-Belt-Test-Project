@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 550336171386464537}
   - component: {fileID: 6625934482859172799}
   - component: {fileID: 7860601690592549389}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Test Food
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -146,3 +146,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: cfb4ac8f6a7b63a4d9d4aa06cc3e7a2a, type: 3}
   prefab: {fileID: 8537781985968172358}
   id: smallFood
+  property: 

@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 6765687575060229139}
   - component: {fileID: 3101980294004028793}
   - component: {fileID: 984663786613002861}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pizza Slice
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -574,6 +574,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: c8bfa49cab3c5144db36edc3779b97cd, type: 3}
   prefab: {fileID: 2699036303504529591}
   id: pizza
+  property: 
 --- !u!1 &4176180288947666584
 GameObject:
   m_ObjectHideFlags: 0

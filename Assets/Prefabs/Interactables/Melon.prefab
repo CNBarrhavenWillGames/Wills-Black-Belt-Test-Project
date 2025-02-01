@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 1486841177459245975}
   - component: {fileID: 2652891434285592825}
   - component: {fileID: 3959218157118908381}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Melon
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -314,3 +314,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: f0c91ed1fae607041ba4e3965acb1c8d, type: 3}
   prefab: {fileID: 9111539381389925778}
   id: melon
+  property: 

@@ -5054,7 +5054,7 @@ GameObject:
   - component: {fileID: 7644810243243424100}
   - component: {fileID: 8012130823281110445}
   - component: {fileID: 5472120570507129129}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radiance Bucket
   m_TagString: Interactable
   m_Icon: {fileID: 0}

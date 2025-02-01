@@ -55,7 +55,13 @@ public class DataManager : MonoBehaviour
                 DataStorage.saveData.salmonEaten -= 1;
             }
 
-            DataStorage.saveData.totalFood -= 100;
+            if (DataStorage.saveData.ketchup)
+            {
+                DataStorage.saveData.totalFood *= 2;
+                DataStorage.saveData.ketchup = false;
+            }
+
+            DataStorage.saveData.totalFood -= 100; // nom nom
 
             if (DataStorage.saveData.totalFood < 0)
             {

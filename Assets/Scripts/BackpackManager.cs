@@ -121,6 +121,21 @@ public class BackpackManager : MonoBehaviour
             DataStorage.saveData.salmonEaten = 0;
         }
 
+        if (inventory[selectedSlot].GetComponent<InteractableStats>().id == "paperClip")
+        {
+            DataStorage.saveData.paperclip = false;
+        }
+
+        if (inventory[selectedSlot].GetComponent<InteractableStats>().id == "map")
+        {
+            DataStorage.saveData.map = false;
+        }
+
+        if (inventory[selectedSlot].GetComponent<InteractableStats>().id == "ketchup")
+        {
+            DataStorage.saveData.ketchup = false;
+        }
+
         inventory.RemoveAt(selectedSlot);
         slots.RemoveAt(selectedSlot);
     }

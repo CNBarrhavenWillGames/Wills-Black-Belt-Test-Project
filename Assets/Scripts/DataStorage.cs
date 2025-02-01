@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.ConstrainedExecution;
+using TMPro;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 
 [System.Serializable]   // need this so it's allowed to be made to a json
@@ -16,6 +18,9 @@ public class SaveData
     public List<bool> activeObjects;
     public bool extraHealth;
     public bool hermesBoots;
+    public bool paperclip;
+    public bool map;
+    public bool ketchup;
     public int salmonEaten;
     // Generic constructor. sets things to default values
     public SaveData()
@@ -27,6 +32,9 @@ public class SaveData
         activeObjects = new List<bool>();
         extraHealth = false;
         hermesBoots = false;
+        paperclip = false;
+        map = false;
+        ketchup = false;
         salmonEaten = 0;
     }
 

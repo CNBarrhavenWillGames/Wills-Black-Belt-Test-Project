@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8808929160049441935}
   - component: {fileID: 1047574629668823146}
   - component: {fileID: 5473402993344976176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radiance Prism
   m_TagString: Interactable
   m_Icon: {fileID: 0}

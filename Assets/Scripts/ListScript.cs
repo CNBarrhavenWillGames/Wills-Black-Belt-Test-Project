@@ -41,7 +41,7 @@ public class ListScript : MonoBehaviour
         spriteDictionary.Add("star", spriteObjects[i++]);
         spriteDictionary.Add("diamond", spriteObjects[i++]);
         spriteDictionary.Add("paperClip", spriteObjects[i++]);
-        spriteDictionary.Add("diamondPickaxe", spriteObjects[i++]);
+        spriteDictionary.Add("map", spriteObjects[i++]);
         spriteDictionary.Add("hermesBoots", spriteObjects[i++]);
         spriteDictionary.Add("goldenCodey", spriteObjects[i++]);
         spriteDictionary.Add("bodyArmour", spriteObjects[i++]);

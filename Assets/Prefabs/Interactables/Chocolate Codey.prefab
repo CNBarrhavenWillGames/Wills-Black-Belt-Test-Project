@@ -4923,6 +4923,10 @@ PrefabInstance:
       value: Chocolate Codey
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 464ce6f3378362c49abcec750853ac33, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 464ce6f3378362c49abcec750853ac33, type: 3}
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
@@ -5015,3 +5019,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 88ff92cf3c9daa048807248cbad9212d, type: 3}
   prefab: {fileID: 5548301018683894131}
   id: chocolateCodey
+  property: 

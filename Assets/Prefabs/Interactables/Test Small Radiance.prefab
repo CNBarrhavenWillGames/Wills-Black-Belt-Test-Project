@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4626714879832676793}
   - component: {fileID: 8686933902218168499}
   - component: {fileID: 4537445364482610675}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Test Small Radiance
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -140,7 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbf82d2b85d64b4fac8415a0a6db1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radiance: 0
+  food: 0
   weight: 1
   sprite: {fileID: 21300000, guid: 575bbb8edea966442a988b6181c503d7, type: 3}
   prefab: {fileID: 1050376065180817291}
   id: sphere
+  property: 

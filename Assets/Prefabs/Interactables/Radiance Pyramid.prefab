@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5874223415266095833}
   - component: {fileID: 4434124888717429304}
   - component: {fileID: 1999480458363882550}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radiance Pyramid
   m_TagString: Interactable
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9154098956198282969}
   - component: {fileID: 3801205209394602109}
   - component: {fileID: 2326596374441012749}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Test Large Radiance
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -146,3 +146,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 2d5a1a14c2a7b474cbfb033ac7a121a6, type: 3}
   prefab: {fileID: 3745597624152767336}
   id: largeRadiance
+  property: 

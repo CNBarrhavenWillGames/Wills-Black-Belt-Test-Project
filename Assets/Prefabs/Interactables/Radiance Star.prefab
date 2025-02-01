@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 256972760834841579}
   - component: {fileID: 910685138995463612}
   - component: {fileID: 1153861016992959443}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radiance Star
   m_TagString: Interactable
   m_Icon: {fileID: 0}

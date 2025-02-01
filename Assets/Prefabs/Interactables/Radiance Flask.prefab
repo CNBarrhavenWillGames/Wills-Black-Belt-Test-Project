@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 2545028447834482224}
   - component: {fileID: 7982819035212132617}
   - component: {fileID: 718379883479745563}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radiance Flask
   m_TagString: Interactable
   m_Icon: {fileID: 0}

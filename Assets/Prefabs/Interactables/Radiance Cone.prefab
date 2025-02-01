@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4360659050344557453}
   - component: {fileID: 1470342085297210675}
   - component: {fileID: 110660023420410443}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radiance Cone
   m_TagString: Interactable
   m_Icon: {fileID: 0}

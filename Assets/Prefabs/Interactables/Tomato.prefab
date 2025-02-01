@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1356135726110866313}
   - component: {fileID: 6417405458896815764}
   - component: {fileID: 633892151323552430}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tomato
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -232,6 +232,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 26e174816741088499dfa1aa53f27f8d, type: 3}
   prefab: {fileID: 906307077903755813}
   id: tomato
+  property: 
 --- !u!1 &4107838047901896546
 GameObject:
   m_ObjectHideFlags: 0

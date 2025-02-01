@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7270053022123920021}
   - component: {fileID: 2686556143894623215}
   - component: {fileID: 8542500212491392456}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Radiance Diamond
   m_TagString: Interactable
   m_Icon: {fileID: 0}

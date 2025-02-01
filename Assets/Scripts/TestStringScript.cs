@@ -39,7 +39,14 @@ public class TestStringScript : MonoBehaviour
                 text.text = "Radiance Collected Today: " + DataStorage.dayRadiance;
                 break;
             case textType.totalFood:
-                text.text = ((DataStorage.saveData.totalFood / 100f) + 1) + " - 1";
+                if (DataStorage.saveData.ketchup)
+                {
+                    text.text = ((DataStorage.saveData.totalFood / 100f) + 1) + " - 1";
+                }
+                else
+                {
+                    text.text = ((DataStorage.saveData.totalFood / 100f) + 1) + " - 1";
+                }
                 break;
             case textType.dayFood:
                 text.text = "Food Collected Today: " + (DataStorage.dayFood / 100f);
