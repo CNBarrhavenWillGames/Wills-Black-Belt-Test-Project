@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -49,6 +51,17 @@ public class DataManager : MonoBehaviour
             DataStorage.saveData.totalRadiance += DataStorage.dayRadiance;
             DataStorage.saveData.totalItems += DataStorage.dayItemIDs.Count;
             DataStorage.saveData.totalFood += DataStorage.dayFood;
+
+            DataStorage.saveData.totalFood2 += DataStorage.dayFood;
+
+            // dayItemIds have already been reset? totalItemIDs is most likely empty due to not printing
+            DataStorage.saveData.totalItemIDs.Concat(DataStorage.dayItemIDs);
+            for (int i = 0; i < DataStorage.saveData.totalItemIDs.Count; i++)
+            {
+                print("All Item IDs: " + DataStorage.saveData.totalItemIDs[i]);
+            }
+           
+
             if (DataStorage.saveData.salmonEaten > 0)
             {
                 DataStorage.saveData.totalFood += 25;
@@ -61,6 +74,11 @@ public class DataManager : MonoBehaviour
                 DataStorage.saveData.ketchup = false;
             }
 
+            if (DataStorage.saveData.totalRadiance >= 1000 && DataStorage.saveData.won == false)
+            {
+                DataStorage.saveData.won = true;
+                SceneManager.LoadScene(3);
+            }
             DataStorage.saveData.totalFood -= 100; // nom nom
 
             if (DataStorage.saveData.totalFood < 0)

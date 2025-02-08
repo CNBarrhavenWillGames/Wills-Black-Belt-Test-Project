@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class TestStringScript : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
@@ -20,6 +22,8 @@ public class TestStringScript : MonoBehaviour
         items = 9,
         field = 10,
         salmon = 11,
+        newDay = 12,
+        finalFood = 13,
     }
 
     [SerializeField] private textType id;
@@ -30,10 +34,15 @@ public class TestStringScript : MonoBehaviour
         switch (id) // Sets the display based off its ID.
         {
             case textType.day:
+                if (SceneManager.GetActiveScene().buildIndex == 3)
+                {
+                    text.text = "Day " + DataStorage.saveData.day;
+                    return;
+                }
                 text.text = "Day " + DataStorage.saveData.day + " Results:";
                 break;
             case textType.totalRadiance:
-                text.text = "Total Radiance: " + DataStorage.saveData.totalRadiance + "/100";
+                text.text = "Total Radiance: " + DataStorage.saveData.totalRadiance + "/1000";
                 break;
             case textType.dayRadiance:
                 text.text = "Radiance Collected Today: " + DataStorage.dayRadiance;
@@ -55,6 +64,11 @@ public class TestStringScript : MonoBehaviour
                 text.text = "Start from Day " + (DataStorage.saveData.day);
                 break;
             case textType.totalFood2:
+                if (SceneManager.GetActiveScene().buildIndex == 3)
+                {
+                    text.text = "Excess Food: " + (DataStorage.saveData.totalFood / 100f);
+                    return;
+                }
                 text.text = "Total Food Units: " + (DataStorage.saveData.totalFood / 100f);
                 break;
             case textType.title:
@@ -86,6 +100,11 @@ public class TestStringScript : MonoBehaviour
                 text.text = "Weight: " + movementScript.weight + " (" + (100 - movementScript.weight)+ "% Movement Speed)";
                 break;
             case textType.items:
+                if (SceneManager.GetActiveScene().buildIndex == 3)
+                {
+                    text.text = "Total Items Collected: " + DataStorage.saveData.totalItems;
+                    return;
+                }
                 text.text = "Items Collected: " + DataStorage.dayItemIDs.Count + " (Total: " + DataStorage.saveData.totalItems + ")";
                 break;
             case textType.field:
@@ -100,6 +119,18 @@ public class TestStringScript : MonoBehaviour
                 {
                     text.text = "";
                 }
+                break;
+            /////
+            /*
+            ///
+            |\---/|
+            | o_o |
+             \_^_/
+            */
+            //AMANDA WAS HERE!!!!!!!!!!!!!!!!!!!!!
+            ////
+            case textType.finalFood:
+                text.text = "Total Food Units Collected: " + (DataStorage.saveData.totalFood2 / 100f);
                 break;
         }
         

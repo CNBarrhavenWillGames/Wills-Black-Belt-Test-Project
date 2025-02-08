@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class ListScript : MonoBehaviour
@@ -45,6 +47,25 @@ public class ListScript : MonoBehaviour
         spriteDictionary.Add("hermesBoots", spriteObjects[i++]);
         spriteDictionary.Add("goldenCodey", spriteObjects[i++]);
         spriteDictionary.Add("bodyArmour", spriteObjects[i++]);
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            for (int j = 0; j < DataStorage.saveData.totalItemIDs.Count; j++)
+            {
+                string selectedSprite = DataStorage.saveData.totalItemIDs[j];
+
+                if (spriteDictionary.ContainsKey(selectedSprite))
+                {
+                    Instantiate(spriteDictionary[selectedSprite], gameObject.transform);
+                }
+                else
+                {
+                    print("Key not found: " + selectedSprite);
+                }
+            }
+
+            return;
+        }
+
         int length = DataStorage.dayItemIDs.Count;
 
         for (int j = 0; j < length; j++)

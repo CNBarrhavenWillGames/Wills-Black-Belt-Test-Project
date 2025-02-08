@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -5,6 +6,7 @@ using System.Runtime.ConstrainedExecution;
 using TMPro;
 using UnityEditor.AssetImporters;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [System.Serializable]   // need this so it's allowed to be made to a json
 public class SaveData
@@ -22,6 +24,9 @@ public class SaveData
     public bool map;
     public bool ketchup;
     public int salmonEaten;
+    public int totalFood2;
+    public List<string> totalItemIDs;
+    public bool won;
     // Generic constructor. sets things to default values
     public SaveData()
     {
@@ -36,6 +41,9 @@ public class SaveData
         map = false;
         ketchup = false;
         salmonEaten = 0;
+        totalFood2 = 0;
+        totalItemIDs = new List<string>();
+        won = false;
     }
 
     // turn a saveData instance into a string
@@ -74,7 +82,6 @@ public static class DataStorage
 
 
     public static LoseReason loseReason = LoseReason.none;
-
 
     public static void Save()
     {
