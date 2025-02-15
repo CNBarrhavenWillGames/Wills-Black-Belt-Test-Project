@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TestStringScript : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
     [SerializeField] private MovementScript movementScript;
+    [SerializeField] private GameObject wallpaper;
+
     private enum textType
     {
         day = 0,
@@ -112,6 +113,7 @@ public class TestStringScript : MonoBehaviour
                 if (DataStorage.saveData.totalRadiance >= 2000)
                 {
                     text.text = "There is no more Radiance left in the field.";
+                    return;
                 }
                 text.text = "There is " + (2000 - DataStorage.saveData.totalRadiance) + " Radiance left in the field.";
                 break;
@@ -139,6 +141,9 @@ public class TestStringScript : MonoBehaviour
                 break;
             case textType.bestRadiance:
                 text.text = "High Score: " + DataStorage.saveData.bestRadiance + " Radiance";
+                if (DataStorage.saveData.bestRadiance >= 1000) {
+                    wallpaper.SetActive(true);
+                }
                 break;
         }
         
