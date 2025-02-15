@@ -43,6 +43,8 @@ public class MovementScript : MonoBehaviour
 
     public GameObject minimap;
 
+    public GameObject tutorialSpawn;
+
     [SerializeField] private float DagansDeltaLastGroundedTime;
 
     /// <summary>
@@ -57,6 +59,11 @@ public class MovementScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        if (DataStorage.saveData.day == 1)
+        {
+            gameObject.transform.position = tutorialSpawn.transform.position + (Vector3.up * 2);
+        }
+
         if (DataStorage.saveData.hermesBoots == true)
         {
             baseMaxSpeed = 6;

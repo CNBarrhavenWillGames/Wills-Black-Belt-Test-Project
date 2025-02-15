@@ -27,6 +27,7 @@ public class SaveData
     public int totalFood2;
     public List<string> totalItemIDs;
     public bool won;
+    public int bestRadiance;
     // Generic constructor. sets things to default values
     public SaveData()
     {
@@ -44,6 +45,7 @@ public class SaveData
         totalFood2 = 0;
         totalItemIDs = new List<string>();
         won = false;
+        bestRadiance = 0;
     }
 
     // turn a saveData instance into a string
@@ -107,7 +109,11 @@ public static class DataStorage
 
     public static void Reset()
     {
+        int bestRadianceSave = saveData.bestRadiance; // any other persistent saved things can be added here (or maybe make an array?)
+
         saveData = new SaveData();
+
+        saveData.bestRadiance = bestRadianceSave;
 
         dayItemIDs = new List<string>();
         dayRadiance = 0;

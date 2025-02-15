@@ -142,6 +142,18 @@ public class Interact : MonoBehaviour
         {
             health -= damageStrength2;
             collider.gameObject.SetActive(false);
+
+            if (health <= 0)
+            {
+                DataStorage.saveData.day = 0;
+                DataStorage.saveData.totalRadiance = 0;
+                DataStorage.saveData.totalFood = 0;
+                DataStorage.dayItemIDs = new List<string>();
+                DataStorage.Reset();
+                DataStorage.lost = true;
+                DataStorage.loseReason = LoseReason.emptyHealth;
+                SceneManager.LoadScene(0);
+            }
         }
     }
 

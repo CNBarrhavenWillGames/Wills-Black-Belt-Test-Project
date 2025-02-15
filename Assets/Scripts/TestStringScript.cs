@@ -24,6 +24,7 @@ public class TestStringScript : MonoBehaviour
         salmon = 11,
         newDay = 12,
         finalFood = 13,
+        bestRadiance = 14,
     }
 
     [SerializeField] private textType id;
@@ -108,7 +109,11 @@ public class TestStringScript : MonoBehaviour
                 text.text = "Items Collected: " + DataStorage.dayItemIDs.Count + " (Total: " + DataStorage.saveData.totalItems + ")";
                 break;
             case textType.field:
-                text.text = "There is " + (2000 - DataStorage.saveData.totalRadiance) + " radiance left in the field.";
+                if (DataStorage.saveData.totalRadiance >= 2000)
+                {
+                    text.text = "There is no more Radiance left in the field.";
+                }
+                text.text = "There is " + (2000 - DataStorage.saveData.totalRadiance) + " Radiance left in the field.";
                 break;
             case textType.salmon:
                 if (DataStorage.saveData.salmonEaten > 0)
@@ -131,6 +136,9 @@ public class TestStringScript : MonoBehaviour
             ////
             case textType.finalFood:
                 text.text = "Total Food Units Collected: " + (DataStorage.saveData.totalFood2 / 100f);
+                break;
+            case textType.bestRadiance:
+                text.text = "High Score: " + DataStorage.saveData.bestRadiance + " Radiance";
                 break;
         }
         

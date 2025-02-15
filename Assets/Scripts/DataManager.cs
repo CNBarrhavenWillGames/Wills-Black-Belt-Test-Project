@@ -38,6 +38,7 @@ public class DataManager : MonoBehaviour
             DataStorage.dayRadiance = 0;
             DataStorage.dayFood = 0;
             DataStorage.dayItemIDs = new List<string>();
+            DataStorage.dayItemIDs = new List<string>();
 
             dayCounter.text = "Day: " + DataStorage.saveData.day;
             totalRadianceCounter.text = "Stashed Radiance: " + DataStorage.saveData.totalRadiance;
@@ -68,6 +69,7 @@ public class DataManager : MonoBehaviour
                 DataStorage.saveData.salmonEaten -= 1;
             }
 
+
             if (DataStorage.saveData.ketchup)
             {
                 DataStorage.saveData.totalFood *= 2;
@@ -76,10 +78,20 @@ public class DataManager : MonoBehaviour
 
             if (DataStorage.saveData.totalRadiance >= 1000 && DataStorage.saveData.won == false)
             {
+                if (DataStorage.saveData.bestRadiance <= DataStorage.saveData.totalRadiance)
+                {
+                    DataStorage.saveData.bestRadiance = DataStorage.saveData.totalRadiance;
+                }
+
                 DataStorage.saveData.won = true;
                 SceneManager.LoadScene(3);
             }
             DataStorage.saveData.totalFood -= 100; // nom nom
+
+            if (DataStorage.saveData.bestRadiance <= DataStorage.saveData.totalRadiance)
+            {
+                DataStorage.saveData.bestRadiance = DataStorage.saveData.totalRadiance;
+            }
 
             if (DataStorage.saveData.totalFood < 0)
             {
