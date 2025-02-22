@@ -70,10 +70,7 @@ public class SliderScript : MonoBehaviour
 
     public void Volume()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            audioMixer.SetFloat("Music Volume", gameObject.GetComponent<Slider>().value);
-        }
+        audioMixer.SetFloat("Music Volume", gameObject.GetComponent<Slider>().value);
         PlayerPrefs.SetFloat("Volume", gameObject.GetComponent<Slider>().value);
     }
 

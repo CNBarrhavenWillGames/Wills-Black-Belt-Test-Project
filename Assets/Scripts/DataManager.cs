@@ -56,11 +56,17 @@ public class DataManager : MonoBehaviour
             DataStorage.saveData.totalFood2 += DataStorage.dayFood;
 
             // dayItemIds have already been reset? totalItemIDs is most likely empty due to not printing
+            for (int i = 0; i < DataStorage.dayItemIDs.Count; i++)
+            {
+                print("All Day Item IDs: " + DataStorage.dayItemIDs[i]);
+                DataStorage.saveData.totalItemIDs.Add(DataStorage.dayItemIDs[i]);
+            }
             DataStorage.saveData.totalItemIDs.Concat(DataStorage.dayItemIDs);
             for (int i = 0; i < DataStorage.saveData.totalItemIDs.Count; i++)
             {
                 print("All Item IDs: " + DataStorage.saveData.totalItemIDs[i]);
             }
+            print("Total Item IDs: " + DataStorage.saveData.totalItemIDs.Count);
            
 
             if (DataStorage.saveData.salmonEaten > 0)
@@ -84,6 +90,7 @@ public class DataManager : MonoBehaviour
                 }
 
                 DataStorage.saveData.won = true;
+                DataStorage.Save();
                 SceneManager.LoadScene(3);
             }
             DataStorage.saveData.totalFood -= 100; // nom nom

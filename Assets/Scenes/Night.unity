@@ -271,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 59895814}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 3
 --- !u!1 &96926309
 GameObject:
@@ -421,6 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 96926311}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 1
 --- !u!1 &305296559
 GameObject:
@@ -571,6 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 305296561}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 2
 --- !u!1 &344542268
 GameObject:
@@ -721,6 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 344542270}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 0
 --- !u!1 &860093133
 GameObject:
@@ -960,6 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1196559339}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 11
 --- !u!114 &1196559339
 MonoBehaviour:
@@ -1110,6 +1115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1197076180}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 10
 --- !u!114 &1197076180
 MonoBehaviour:
@@ -1469,6 +1475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1357716425}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 9
 --- !u!1 &1417086474
 GameObject:
@@ -1522,6 +1529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1417086477}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 6
 --- !u!114 &1417086477
 MonoBehaviour:
@@ -1767,6 +1775,7 @@ MonoBehaviour:
   - {fileID: 8607549683139020060, guid: f3cd7268bef9ce34e802e95b97640ef2, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 4452326941016649493, guid: be2bd902308be9c45800919e385dc532, type: 3}
   ids: []
   things: []
 --- !u!222 &1699917319
@@ -2247,6 +2256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 2075877979}
   movementScript: {fileID: 0}
+  wallpaper: {fileID: 0}
   id: 4
 --- !u!1 &2115005017
 GameObject:

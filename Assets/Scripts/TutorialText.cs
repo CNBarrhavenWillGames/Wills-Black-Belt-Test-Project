@@ -59,6 +59,9 @@ public class TutorialText : MonoBehaviour
                     text.text = "Collect the Food";
                     break;
                 case 7:
+                    text.text = "Better Items Slow Your Movement Speed More";
+                    break;
+                case 8:
                     text.text = "Exit by the Pink Door to End the Day";
                     break;
             }
@@ -74,7 +77,7 @@ public class TutorialText : MonoBehaviour
             switch (tutorialProgress2)
             {
                 case 1:
-                    text.text = "If your Healthbar runs out, you lose";
+                    text.text = "If your Healthbar runs out, you lose (Press R to Continue)";
                     break;
                 case 2:
                     text.text = "If you don't exit after 4 Minutes, you lose";

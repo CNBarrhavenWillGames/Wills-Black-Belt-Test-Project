@@ -21,13 +21,26 @@ public class ExitMenuScript : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        if (safety == true)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            if (safety == true)
+            {
+                DataStorage.lost = false;
+                DataStorage.loseReason = LoseReason.none;
+                SceneManager.LoadScene(0);
+            }
+            safety = true;
+            text.text = "All progress from today will be lost. Are you sure?";
+        }
+        else
         {
             DataStorage.lost = false;
             DataStorage.loseReason = LoseReason.none;
+            DataStorage.saveData.day++;
+            DataStorage.Save();
             SceneManager.LoadScene(0);
         }
-        safety = true;
-        text.text = "All progress from today will be lost. Are you sure?";
+
+        
     }
 }

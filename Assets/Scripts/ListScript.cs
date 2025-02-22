@@ -47,6 +47,7 @@ public class ListScript : MonoBehaviour
         spriteDictionary.Add("hermesBoots", spriteObjects[i++]);
         spriteDictionary.Add("goldenCodey", spriteObjects[i++]);
         spriteDictionary.Add("bodyArmour", spriteObjects[i++]);
+        spriteDictionary.Add("bigTomato", spriteObjects[i++]);
         if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             for (int j = 0; j < DataStorage.saveData.totalItemIDs.Count; j++)

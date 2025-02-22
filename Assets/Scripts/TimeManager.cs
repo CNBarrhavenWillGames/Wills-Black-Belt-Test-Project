@@ -39,6 +39,11 @@ public class TimeManager : MonoBehaviour
 
     private void FixedUpdate() // assume 60fps?
     {
+        if (DataStorage.saveData.day == 1)
+        {
+            return;
+        }
+
         time += Time.fixedDeltaTime; 
 
         float newX = Mathf.Lerp(start, end, time/lengthOfDay); // Each day is 4 minutes.
@@ -49,9 +54,9 @@ public class TimeManager : MonoBehaviour
 
         if (time >= lengthOfDay)
         {
-            DataStorage.saveData.day = 0;
-            DataStorage.saveData.totalRadiance = 0;
-            DataStorage.saveData.totalFood = 0;
+            DataStorage.saveData.day = 0; // You can get rid of
+            DataStorage.saveData.totalRadiance = 0; // these lines but
+            DataStorage.saveData.totalFood = 0; // i'm scared something will stop working if i do
             DataStorage.dayItemIDs = new List<string>();
             DataStorage.Reset();
             DataStorage.lost = true;
