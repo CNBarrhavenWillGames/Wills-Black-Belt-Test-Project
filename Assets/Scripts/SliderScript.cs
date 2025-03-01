@@ -16,6 +16,9 @@ public class SliderScript : MonoBehaviour
         volume = 1,
         invertX = 2,
         invertY = 3,
+        option1 = 4,
+        option2 = 5,
+        option3 = 6,
     }
 
     [SerializeField] private sliderType type;
@@ -42,6 +45,36 @@ public class SliderScript : MonoBehaviour
                 break;
             case sliderType.invertY:
                 if (PlayerPrefs.GetInt("InvertY") == 0)
+                {
+                    gameObject.GetComponent<Toggle>().isOn = false;
+                }
+                else
+                {
+                    gameObject.GetComponent<Toggle>().isOn = true;
+                }
+                break;
+            case sliderType.option1:
+                if (PlayerPrefs.GetInt("Option1") == 0)
+                {
+                    gameObject.GetComponent<Toggle>().isOn = false;
+                }
+                else
+                {
+                    gameObject.GetComponent<Toggle>().isOn = true;
+                }
+                break;
+            case sliderType.option2:
+                if (PlayerPrefs.GetInt("Option2") == 0)
+                {
+                    gameObject.GetComponent<Toggle>().isOn = false;
+                }
+                else
+                {
+                    gameObject.GetComponent<Toggle>().isOn = true;
+                }
+                break;
+            case sliderType.option3:
+                if (PlayerPrefs.GetInt("Option1") == 0)
                 {
                     gameObject.GetComponent<Toggle>().isOn = false;
                 }
@@ -96,6 +129,45 @@ public class SliderScript : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("InvertY", 0);
+        }
+
+    }
+
+    public void Option1()
+    {
+        if (gameObject.GetComponent<Toggle>().isOn)
+        {
+            PlayerPrefs.SetInt("Option1", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Option1", 0);
+        }
+
+    }
+
+    public void Option2()
+    {
+        if (gameObject.GetComponent<Toggle>().isOn)
+        {
+            PlayerPrefs.SetInt("Option2", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Option2", 0);
+        }
+
+    }
+
+    public void Option3()
+    {
+        if (gameObject.GetComponent<Toggle>().isOn)
+        {
+            PlayerPrefs.SetInt("Option3", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Option3", 0);
         }
 
     }

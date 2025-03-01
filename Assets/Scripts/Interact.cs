@@ -26,10 +26,22 @@ public class Interact : MonoBehaviour
 
     private void Start()
     {
+        if (PlayerPrefs.GetInt("Option3") == 1)
+        {
+            totalHealth = 50;
+            health = 50;
+        }
+
         if (DataStorage.saveData.extraHealth == true)
         {
             totalHealth = 200;
             health = 200;
+            if (PlayerPrefs.GetInt("Option3") == 1)
+            {
+                totalHealth = 100;
+                health = 100;
+            }
+
         }
 
         interactObjects = new List<GameObject>();
@@ -39,6 +51,13 @@ public class Interact : MonoBehaviour
     private void Update()
     {
         print("Nearby Objects:" + interactObjects.Count);
+
+#if (UNITY_EDITOR)
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            DataStorage.dayRadiance += 100;
+        }
+#endif
 
         if (Input.GetKeyDown(KeyCode.E) && interactObjects.Count > 0) // Picks up the item and grabs its data.
         {

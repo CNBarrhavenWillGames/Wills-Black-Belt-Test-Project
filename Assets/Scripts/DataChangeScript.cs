@@ -55,6 +55,14 @@ public class DataChangeScript : MonoBehaviour
                 break;
             case buttonType.newGame:
                 DataStorage.Reset();
+                if (PlayerPrefs.GetInt("Option1") == 1)
+                {
+                    DataStorage.saveData.totalRadiance += 500;
+                }
+                if (PlayerPrefs.GetInt("Option2") == 1)
+                {
+                    DataStorage.saveData.totalFood += 200;
+                }
                 DataStorage.saveData.day = 1;
                 DataStorage.Save();
                 SceneManager.LoadScene(1);
