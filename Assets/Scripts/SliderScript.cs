@@ -9,6 +9,7 @@ public class SliderScript : MonoBehaviour
 {
     [SerializeField] private CameraRotation cameraScript;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private Camera mainCamera;
 
     private enum sliderType
     {
@@ -19,6 +20,7 @@ public class SliderScript : MonoBehaviour
         option1 = 4,
         option2 = 5,
         option3 = 6,
+        fov = 7,
     }
 
     [SerializeField] private sliderType type;
@@ -74,7 +76,7 @@ public class SliderScript : MonoBehaviour
                 }
                 break;
             case sliderType.option3:
-                if (PlayerPrefs.GetInt("Option1") == 0)
+                if (PlayerPrefs.GetInt("Option3") == 0)
                 {
                     gameObject.GetComponent<Toggle>().isOn = false;
                 }
@@ -82,6 +84,9 @@ public class SliderScript : MonoBehaviour
                 {
                     gameObject.GetComponent<Toggle>().isOn = true;
                 }
+                break;
+            case sliderType.fov:
+                gameObject.GetComponent<Slider>().value = PlayerPrefs.GetFloat("FOV");
                 break;
         }
     }
@@ -170,5 +175,14 @@ public class SliderScript : MonoBehaviour
             PlayerPrefs.SetInt("Option3", 0);
         }
 
+    }
+
+    public void FOV()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            mainCamera.fieldOfView = gameObject.GetComponent<Slider>().value;
+        }
+        PlayerPrefs.SetFloat("FOV", gameObject.GetComponent<Slider>().value);
     }
 }

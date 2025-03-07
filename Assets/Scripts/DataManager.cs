@@ -44,6 +44,12 @@ public class DataManager : MonoBehaviour
             totalRadianceCounter.text = "Stashed Radiance: " + DataStorage.saveData.totalRadiance;
             currentRadianceCounter.text = "Inventory Radiance: " + DataStorage.dayRadiance;
             totalFoodCounter.text = "Stashed Food: " + (DataStorage.saveData.totalFood / 100f);
+            totalFoodCounter.color = new Color(0.5f, 1f, 0.5f);
+            if (DataStorage.saveData.totalFood < 100f)
+            {
+                print(DataStorage.saveData.totalFood);
+                totalFoodCounter.color = new Color(1, 0.5f, 0.5f);
+            }
             currentFoodCounter.text = "Inventory Food: " + DataStorage.dayFood;
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
