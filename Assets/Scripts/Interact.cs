@@ -50,7 +50,6 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        print("Nearby Objects:" + interactObjects.Count);
 
 #if (UNITY_EDITOR)
         if (Input.GetKeyDown(KeyCode.P))
