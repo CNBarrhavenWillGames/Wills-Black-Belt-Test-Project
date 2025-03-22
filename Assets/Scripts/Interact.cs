@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class Interact : MonoBehaviour
 {
@@ -65,7 +66,12 @@ public class Interact : MonoBehaviour
 
             interactScript = interactObject.GetComponent<InteractableStats>();
 
-            
+            if (interactScript.id == "lever")
+            {
+                DataStorage.lever = !DataStorage.lever;
+                print(DataStorage.lever);
+                return;
+            }
 
 
             if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 

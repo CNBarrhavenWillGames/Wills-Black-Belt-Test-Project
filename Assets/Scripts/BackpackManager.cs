@@ -71,7 +71,8 @@ public class BackpackManager : MonoBehaviour
         GameObject selectedObject = inventory[selectedSlot];
         InteractableStats selectedStats = selectedObject.GetComponent<InteractableStats>();
 
-        selectedDisplay.text = selectedObject.name + " Selected: " + selectedStats.weight + " Weight, " + selectedStats.radiance + " Radiance, " + (selectedStats.food / 100f) + " Food. " + selectedStats.property;
+        selectedDisplay.GetComponent<RectTransform>().anchoredPosition = new Vector2(slots[selectedSlot].transform.position.x - 2250, slots[selectedSlot].transform.position.y);
+        selectedDisplay.text = selectedStats.weight + " Weight, " + selectedStats.radiance + " Radiance, " + (selectedStats.food / 100f) + " Food. " + selectedStats.property;
     }
 
     /// <summary>

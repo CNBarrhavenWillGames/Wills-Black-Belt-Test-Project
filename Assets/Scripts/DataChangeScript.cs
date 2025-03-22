@@ -50,6 +50,7 @@ public class DataChangeScript : MonoBehaviour
                 DataStorage.dayRadiance = 0;
                 DataStorage.dayFood = 0;
                 DataStorage.dayItems = 0;
+                DataStorage.lever = false;
                 DataStorage.Save();
                 SceneManager.LoadScene(1);
                 break;

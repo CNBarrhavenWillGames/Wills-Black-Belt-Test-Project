@@ -7,6 +7,7 @@ TagManager:
   - Interactable
   - Damage
   - Damage2
+  - Interactable2
   layers:
   - Default
   - TransparentFX

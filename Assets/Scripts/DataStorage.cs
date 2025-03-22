@@ -81,6 +81,7 @@ public static class DataStorage
 
     public static bool lost = false; // could merge this and below
 
+    public static bool lever = false;
 
     public static LoseReason loseReason = LoseReason.none;
 
@@ -118,6 +119,7 @@ public static class DataStorage
         dayRadiance = 0;
         dayFood = 0;
         dayItems = 0;
+        lever = false;
 
         PlayerPrefs.SetString("saveData", saveData.ToJsonString());
         Debug.Log("reset data: " + saveData.ToJsonString());

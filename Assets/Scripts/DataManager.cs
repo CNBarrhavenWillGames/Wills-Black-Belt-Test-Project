@@ -39,6 +39,7 @@ public class DataManager : MonoBehaviour
             DataStorage.dayFood = 0;
             DataStorage.dayItemIDs = new List<string>();
             DataStorage.dayItemIDs = new List<string>();
+            DataStorage.lever = false;
 
             dayCounter.text = "Day: " + DataStorage.saveData.day;
             totalRadianceCounter.text = "Stashed Radiance: " + DataStorage.saveData.totalRadiance;

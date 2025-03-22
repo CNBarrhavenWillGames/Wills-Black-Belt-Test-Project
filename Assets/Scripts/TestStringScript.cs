@@ -110,13 +110,26 @@ public class TestStringScript : MonoBehaviour
                 text.text = "Items Collected: " + DataStorage.dayItemIDs.Count + " (Total: " + DataStorage.saveData.totalItems + ")";
                 break;
             case textType.field:
-                if (DataStorage.saveData.totalRadiance >= 2000)
+                if (PlayerPrefs.GetInt("Option1") == 0)
                 {
-                    text.text = "There is no more Radiance left in the field.";
-                    return;
+                    if (DataStorage.saveData.totalRadiance >= 2000)
+                    {
+                        text.text = "There is no more Radiance left in the field.";
+                        return;
+                    }
+                    text.text = "There is " + (2000 - DataStorage.saveData.totalRadiance) + " Radiance left in the field.";
+                    break;
                 }
-                text.text = "There is " + (2000 - DataStorage.saveData.totalRadiance) + " Radiance left in the field.";
-                break;
+                else
+                {
+                    if (DataStorage.saveData.totalRadiance >= 2500)
+                    {
+                        text.text = "There is no more Radiance left in the field.";
+                        return;
+                    }
+                    text.text = "There is " + (2500 - DataStorage.saveData.totalRadiance) + " Radiance left in the field.";
+                    break;
+                }
             case textType.salmon:
                 if (DataStorage.saveData.salmonEaten > 0)
                 {

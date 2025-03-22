@@ -10,7 +10,8 @@ public class TutorialText : MonoBehaviour
 
     [SerializeField] private TMP_Text text;
     private int tutorialProgress = 0;
-    private int tutorialProgress2 = 0;
+
+    [SerializeField] private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +21,6 @@ public class TutorialText : MonoBehaviour
             timeBar.SetActive(false);
             tutorialProgress = 1;
         }
-
-        if (DataStorage.saveData.day == 2)
-        {
-            tutorialProgress2 = 1;
-        }
     }
 
     // Update is called once per frame
@@ -33,64 +29,55 @@ public class TutorialText : MonoBehaviour
 
         if (tutorialProgress >= 1)
         {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                tutorialProgress++;
-            }
 
             switch (tutorialProgress)
             {
                 case 1:
-                    text.text = "Welcome to \"Inflitration\" (Press R to Continue)";
+                    text.text = "Use W, A, S, and D to Move";
+                    if (player.transform.position.z >= -217)
+                    {
+                        tutorialProgress++;
+                    }
                     break;
                 case 2:
-                    text.text = "Use W, A, S, and D to Move";
+                    text.text = "Use Spacebar to Jump";
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        tutorialProgress++;
+                    }
                     break;
                 case 3:
-                    text.text = "Use Spacebar to Jump";
+                    text.text = "Use E to Interact with Items (Q to drop)";
+                    if (player.GetComponent<MovementScript>().weight >= 3)
+                    {
+                        tutorialProgress++;
+                    }
                     break;
                 case 4:
-                    text.text = "Use E to Interact with Items";
+                    text.text = "Collect all of the Food";
+                    if (player.GetComponent<MovementScript>().weight >= 37)
+                    {
+                        tutorialProgress++;
+                    }
                     break;
                 case 5:
-                    text.text = "Use Q to Drop Items";
+                    text.text = "Flick the Lever in the corner";
+                    if (DataStorage.lever == true)
+                    {
+                        tutorialProgress++;
+                    }
                     break;
                 case 6:
-                    text.text = "Collect the Food";
+                    text.text = "Exit by the Pink Door to End the Day";
+                    if (player.transform.position.z >= -196)
+                    {
+                        tutorialProgress++;
+                    }
                     break;
                 case 7:
-                    text.text = "Better Items Slow Your Movement Speed More";
-                    break;
-                case 8:
-                    text.text = "Exit by the Pink Door to End the Day";
-                    break;
-            }
-        }
-
-        if (tutorialProgress2 >= 1)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                tutorialProgress2++;
-            }
-
-            switch (tutorialProgress2)
-            {
-                case 1:
-                    text.text = "If your Healthbar runs out, you lose (Press R to Continue)";
-                    break;
-                case 2:
-                    text.text = "If you don't exit after 4 Minutes, you lose";
-                    break;
-                case 3:
-                    text.text = "Collect as many items as you can each day";
-                    break;
-                case 4:
                     text.text = "Good Luck!";
                     break;
-                case 5:
-                    text.text = "";
-                    break;
+
             }
         }
     }

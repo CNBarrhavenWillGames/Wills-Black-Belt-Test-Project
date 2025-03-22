@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class DayObjectScript : MonoBehaviour
 {
+    [SerializeField] private float maxY;
+    [SerializeField] private float minY;
+    [SerializeField] private float moveSpeed;
     private enum objectType
     {
         rotatingWall = 0,
         disappear = 1,
+        lever = 2,
     }
 
     [SerializeField] private objectType id;
@@ -31,5 +35,23 @@ public class DayObjectScript : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    private void Update()
+    {
+        switch (id) 
+        {
+            case objectType.lever:
+                if (DataStorage.lever == true && transform.position.y <= maxY)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y + moveSpeed, transform.position.z);
+                }
+                else if (DataStorage.lever == false && transform.position.y >= minY)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y - moveSpeed, transform.position.z);
+                }
+                break;
+        }
+
     }
 }
