@@ -100,7 +100,7 @@ public class BackpackManager : MonoBehaviour
     private void DropItem()
     {
 
-        // interactScript.editProximityPrompt();
+        interactScript.editProximityPrompt();
 
         GameObject destroyUISlot = slots[selectedSlot];
         Destroy(destroyUISlot);

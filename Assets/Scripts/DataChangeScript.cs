@@ -15,6 +15,7 @@ public class DataChangeScript : MonoBehaviour
         newGame = 5,
         loadFromMenu = 6,
         closeGame = 7,
+        playground = 8,
     }
 
     private void Start()
@@ -73,6 +74,9 @@ public class DataChangeScript : MonoBehaviour
                 break;
             case buttonType.closeGame:
                 Application.Quit();
+                break;
+            case buttonType.playground:
+                SceneManager.LoadScene(4);
                 break;
         }
     }

@@ -15,6 +15,10 @@ public class Interact : MonoBehaviour
     [SerializeField] private MovementScript movementScript;
     [SerializeField] private BackpackManager backpackManager;
     [SerializeField] private GameObject proximityPrompt;
+    [SerializeField] private GameObject weightBackground;
+    [SerializeField] private GameObject weightCurrent;
+    [SerializeField] private GameObject weightObject;
+    [SerializeField] private TMP_Text weightObjectText;
 
     [Header("Health Variables")]
     [SerializeField] private int damageStrength = 5;
@@ -153,9 +157,13 @@ public class Interact : MonoBehaviour
         {
             interactObjects.Add(collider.gameObject);
 
-            editProximityPrompt();
 
             proximityPrompt.SetActive(true);
+
+
+            editProximityPrompt();
+
+            
         }
 
         if (collider.gameObject.tag == "Damage")
@@ -248,6 +256,12 @@ public class Interact : MonoBehaviour
         proximityPrompt.transform.GetChild(4).GetComponent<Image>().sprite = closestScript.sprite;
         proximityPrompt.transform.GetChild(6).GetComponent<TMP_Text>().text = closestScript.property;
 
+        Rect currentRect = weightCurrent.GetComponent<RectTransform>().rect;
+        weightCurrent.GetComponent<RectTransform>().sizeDelta = new Vector2(movementScript.weight, currentRect.height);
+
+        Rect objectRect = weightObject.GetComponent<RectTransform>().rect;
+        weightObject.GetComponent<RectTransform>().sizeDelta = new Vector2(closestScript.weight, currentRect.height);
+        weightObjectText.text = closestScript.weight.ToString();
         if (closestObject.GetComponent<InteractableStats>().weight >= (100 - movementScript.weight))
         {
             proximityPrompt.transform.GetChild(5).GetComponent<TMP_Text>().text = "Too Heavy";

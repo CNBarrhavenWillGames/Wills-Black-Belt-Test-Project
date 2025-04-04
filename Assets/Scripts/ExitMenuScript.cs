@@ -41,6 +41,10 @@ public class ExitMenuScript : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            SceneManager.LoadScene(0);
+        }
         
     }
 }

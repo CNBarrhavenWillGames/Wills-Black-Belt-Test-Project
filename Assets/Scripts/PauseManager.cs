@@ -48,7 +48,7 @@ public class PauseManager : MonoBehaviour
         if (paused)
         {
 
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 4)
             {
                 // Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -61,7 +61,7 @@ public class PauseManager : MonoBehaviour
         }
         else
         {
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 4)
             {
                 // Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;

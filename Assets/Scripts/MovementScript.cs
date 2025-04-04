@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
 public class MovementScript : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class MovementScript : MonoBehaviour
 
     [SerializeField] private float DagansDeltaLastGroundedTime;
 
+    private Vector3 startingPosition;
+
     /// <summary>
     /// This function calculates the new max speed of the player based on weight.
     /// </summary>
@@ -59,7 +62,10 @@ public class MovementScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        if (DataStorage.saveData.day == 1)
+
+        startingPosition = gameObject.transform.position;
+
+        if (DataStorage.saveData.day == 1 && SceneManager.GetActiveScene().buildIndex == 1)
         {
             gameObject.transform.position = tutorialSpawn.transform.position + (Vector3.up * 2);
         }
@@ -155,6 +161,11 @@ public class MovementScript : MonoBehaviour
         else
         {
             AirMovement();
+        }
+
+        if (transform.position.y <= -5)
+        {
+            transform.position = startingPosition;
         }
    }
     /// <summary>

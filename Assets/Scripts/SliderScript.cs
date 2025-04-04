@@ -99,7 +99,7 @@ public class SliderScript : MonoBehaviour
 
     public void Sensitivity()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 4)
         {
             cameraScript.sensitivity = Mathf.RoundToInt(gameObject.GetComponent<Slider>().value);
         }
@@ -179,7 +179,7 @@ public class SliderScript : MonoBehaviour
 
     public void FOV()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 4)
         {
             mainCamera.fieldOfView = gameObject.GetComponent<Slider>().value;
         }
