@@ -14,6 +14,11 @@ public class Exit : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            if (SceneManager.GetActiveScene().buildIndex == 4)
+            {
+                SceneManager.LoadScene(0);
+            }
+
             int length = backpackManager.inventory.Count;
             for (int i = 0; i < objectManager.objectList.Count; i++)
             {

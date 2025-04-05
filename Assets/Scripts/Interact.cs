@@ -248,7 +248,9 @@ public class Interact : MonoBehaviour
         proximityPrompt.SetActive(true);
 
         InteractableStats closestScript = closestObject.GetComponent<InteractableStats>();
+
         
+        // Sets the proximity prompt display children (to be improvted, maybe...)
         proximityPrompt.transform.GetChild(0).GetComponent<TMP_Text>().text = closestObject.name;
         proximityPrompt.transform.GetChild(1).GetComponent<TMP_Text>().text = "Weight: " + closestScript.weight;
         proximityPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = "Radiance " + closestScript.radiance.ToString();
