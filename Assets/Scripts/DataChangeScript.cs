@@ -24,6 +24,11 @@ public class DataChangeScript : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        
+        if (type == buttonType.playground && DataStorage.saveData.bestRadiance <= 2000 && SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     [SerializeField] private buttonType type;

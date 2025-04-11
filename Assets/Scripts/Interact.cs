@@ -73,7 +73,6 @@ public class Interact : MonoBehaviour
             if (interactScript.id == "lever")
             {
                 DataStorage.lever = !DataStorage.lever;
-                print(DataStorage.lever);
                 return;
             }
 
@@ -250,7 +249,7 @@ public class Interact : MonoBehaviour
         InteractableStats closestScript = closestObject.GetComponent<InteractableStats>();
 
         
-        // Sets the proximity prompt display children (to be improvted, maybe...)
+        // Sets the proximity prompt display children (to be improved, maybe...)
         proximityPrompt.transform.GetChild(0).GetComponent<TMP_Text>().text = closestObject.name;
         proximityPrompt.transform.GetChild(1).GetComponent<TMP_Text>().text = "Weight: " + closestScript.weight;
         proximityPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = "Radiance " + closestScript.radiance.ToString();
@@ -264,6 +263,11 @@ public class Interact : MonoBehaviour
         Rect objectRect = weightObject.GetComponent<RectTransform>().rect;
         weightObject.GetComponent<RectTransform>().sizeDelta = new Vector2(closestScript.weight, currentRect.height);
         weightObjectText.text = closestScript.weight.ToString();
+        if (closestScript.weight == 0)
+        {
+            weightObjectText.text = "";
+        }
+
         if (closestObject.GetComponent<InteractableStats>().weight >= (100 - movementScript.weight))
         {
             proximityPrompt.transform.GetChild(5).GetComponent<TMP_Text>().text = "Too Heavy";

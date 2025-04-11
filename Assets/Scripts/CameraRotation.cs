@@ -46,7 +46,7 @@ public class CameraRotation : MonoBehaviour
         }
 
         rotation += Input.GetAxis("Mouse Y") * invert * Time.deltaTime * sensitivity;
-        rotation = Mathf.Clamp(rotation, -80, 80);
+        rotation = Mathf.Clamp(rotation, -84, 84);
         transform.localRotation = Quaternion.Euler(rotation, 0, 0);
 
         if (useExperimentalCamera)
