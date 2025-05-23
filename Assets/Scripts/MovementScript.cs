@@ -50,6 +50,8 @@ public class MovementScript : MonoBehaviour
 
     private Vector3 startingPosition;
 
+    [SerializeField] private Animator characterAnimator;
+
     /// <summary>
     /// This function calculates the new max speed of the player based on weight.
     /// </summary>
@@ -103,6 +105,9 @@ public class MovementScript : MonoBehaviour
         }
 
         direction = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal"); // Get Input
+
+        characterAnimator.SetFloat("MovementX", direction.x);
+        characterAnimator.SetFloat("MovementZ", direction.y);
 
         Debug.DrawRay(player.transform.position, Vector3.down, Color.red);
 
@@ -160,7 +165,7 @@ public class MovementScript : MonoBehaviour
         }
         else
         {
-            AirMovement();
+            GroundedMovement(); // AirMovement() if that ever becomes relevant
         }
 
         if (transform.position.y <= -5)
