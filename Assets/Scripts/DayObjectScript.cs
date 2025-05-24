@@ -60,12 +60,10 @@ public class DayObjectScript : MonoBehaviour
                 if (DataStorage.lever == true && transform.localEulerAngles.x < maxRotation) // If the lever is on and is still smaller than the max rotation,
                 {
                     transform.rotation = new Quaternion(transform.rotation.x + moveSpeed, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-                    Debug.Log(transform.localEulerAngles.x);
                 }
                 else if (DataStorage.lever == false && transform.localEulerAngles.x > minRotation) // If the lever is off and it still greater the min rotation,
                 {
                     transform.rotation = new Quaternion(transform.rotation.x - moveSpeed, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-                    Debug.Log(transform.localEulerAngles.x);
                 }
                 break;
         }

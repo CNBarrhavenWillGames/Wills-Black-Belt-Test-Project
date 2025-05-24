@@ -29,6 +29,8 @@ public class Interact : MonoBehaviour
     public int health = 100;
     public int totalHealth = 100;
 
+    [SerializeField] private Animator characterAnimator;
+
     private void Start()
     {
         if (PlayerPrefs.GetInt("Option3") == 1)
@@ -72,6 +74,7 @@ public class Interact : MonoBehaviour
 
             if (interactScript.id == "lever")
             {
+                characterAnimator.SetTrigger("Interact");
                 DataStorage.lever = !DataStorage.lever;
                 return;
             }
@@ -79,6 +82,7 @@ public class Interact : MonoBehaviour
 
             if (movementScript.weight + interactScript.weight < MovementScript.maxWeight) 
             {
+                characterAnimator.SetTrigger("Interact");
                 movementScript.weight += interactScript.weight;
                 DataStorage.dayRadiance += interactScript.radiance;
                 DataStorage.dayFood += interactScript.food;
@@ -133,14 +137,12 @@ public class Interact : MonoBehaviour
                 health -= damageStrength;
                 if (health <= 0)
                 {
-                    DataStorage.saveData.day = 0;
-                    DataStorage.saveData.totalRadiance = 0;
-                    DataStorage.saveData.totalFood = 0;
-                    DataStorage.dayItemIDs = new List<string>();
-                    DataStorage.Reset();
-                    DataStorage.lost = true;
-                    DataStorage.loseReason = LoseReason.emptyHealth;
-                    SceneManager.LoadScene(0);
+                    if (!characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+                    {
+                        StartCoroutine("Death");
+                        characterAnimator.SetTrigger("Death");
+                        print("Triggered Death");
+                    }
                 }
             }
             damageTimer = 0;
@@ -176,14 +178,12 @@ public class Interact : MonoBehaviour
 
             if (health <= 0)
             {
-                DataStorage.saveData.day = 0;
-                DataStorage.saveData.totalRadiance = 0;
-                DataStorage.saveData.totalFood = 0;
-                DataStorage.dayItemIDs = new List<string>();
-                DataStorage.Reset();
-                DataStorage.lost = true;
-                DataStorage.loseReason = LoseReason.emptyHealth;
-                SceneManager.LoadScene(0);
+                if (!characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+                {
+                    StartCoroutine("Death");
+                    characterAnimator.SetTrigger("Death");
+                    print("Triggered Death");
+                }
             }
         }
     }
@@ -280,5 +280,18 @@ public class Interact : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(4);
+        DataStorage.saveData.day = 0;
+        DataStorage.saveData.totalRadiance = 0;
+        DataStorage.saveData.totalFood = 0;
+        DataStorage.dayItemIDs = new List<string>();
+        DataStorage.Reset();
+        DataStorage.lost = true;
+        DataStorage.loseReason = LoseReason.emptyHealth;
+        SceneManager.LoadScene(0);
     }
 }

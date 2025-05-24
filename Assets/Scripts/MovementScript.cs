@@ -95,6 +95,27 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Z) && Input.GetAxisRaw("Vertical") == 0 && Input.GetAxisRaw("Horizontal") == 0)
+        {
+            if (!characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Emote"))
+            {
+                characterAnimator.ResetTrigger("Emote End");
+                characterAnimator.SetTrigger("Emote Start");
+                print("Emote started by pressing Z");
+            }
+            else
+            {
+                characterAnimator.SetTrigger("Emote End");
+                print("Emote ended by pressing Z");
+            }
+        }
+
+        if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0 && characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Emote"))
+        {
+            characterAnimator.SetTrigger("Emote End");
+            print("Emote ended by moving");
+        }
+
         if (PlayerPrefs.GetInt("InvertX") == 1)
         {
             invert = -1;
@@ -103,11 +124,13 @@ public class MovementScript : MonoBehaviour
         {
             invert = 1;
         }
+        if (!characterAnimator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        {
+            direction = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal"); // Get Input
+        }
 
-        direction = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal"); // Get Input
-
-        characterAnimator.SetFloat("MovementX", direction.x);
-        characterAnimator.SetFloat("MovementZ", direction.y);
+        characterAnimator.SetFloat("MovementX", Input.GetAxis("Vertical") * ((maxWeight - weight) / maxWeight));
+        characterAnimator.SetFloat("MovementZ", Input.GetAxis("Horizontal") * ((maxWeight - weight) / maxWeight));
 
         Debug.DrawRay(player.transform.position, Vector3.down, Color.red);
 
@@ -118,6 +141,7 @@ public class MovementScript : MonoBehaviour
             Gizmos.color = Color.magenta;
             //grounded = true;
             LastGroundedTime = Time.time;
+            characterAnimator.SetBool("In Air", false);
         } 
         else
         {
@@ -160,6 +184,7 @@ public class MovementScript : MonoBehaviour
 
 
                 rb.AddForce(0, jumpHeight * 10, 0);
+                characterAnimator.SetBool("In Air", true);
                 LastJumpSuccessTime = Time.time;
             }
         }
