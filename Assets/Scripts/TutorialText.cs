@@ -68,7 +68,7 @@ public class TutorialText : MonoBehaviour
                     }
                     break;
                 case 6:
-                    text.text = "Exit by the Pink Door to End the Day";
+                    text.text = "Exit by the Red Door to End the Day";
                     if (player.transform.position.z >= -196)
                     {
                         tutorialProgress++;
