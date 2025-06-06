@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+// camera x pos is usually 0.921
 public class CameraRotation : MonoBehaviour
 {
     public int sensitivity = 1;
