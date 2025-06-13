@@ -483,7 +483,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 2835dca9b23517a4aa0bca6b63a457ba, type: 3}
   prefab: {fileID: 7509282235079724607}
   id: hermesBoots
-  property: 
+  property: Doubles Movement Speed
 --- !u!1001 &398433590140017562
 PrefabInstance:
   m_ObjectHideFlags: 0

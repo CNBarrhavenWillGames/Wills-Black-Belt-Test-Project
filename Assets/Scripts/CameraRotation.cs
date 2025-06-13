@@ -19,6 +19,8 @@ public class CameraRotation : MonoBehaviour
     private Vector3 cameraOffset;
 
     public bool useExperimentalCamera;
+
+    [SerializeField] private LayerMask mask;
     private void Start()
     {
         cameraOffset = cameraTransform.localPosition; // Sets the normal distance to whatever it is at the beginning, when it's not colliding with anything.
@@ -51,6 +53,13 @@ public class CameraRotation : MonoBehaviour
 
         if (useExperimentalCamera)
         {
+            //if (Physics.Linecast(cameraTransform.position, transform.parent.position, out hit, mask)) // if something is colliding with the line from camera target to player,
+            //{
+            //    cameraTransform.localPosition = new Vector3(-Vector3.Distance(transform.position, hit.point), 0, 0); // move the camera to that collision point
+            //}
+
+            //Debug.DrawLine(transform.position + transform.rotation * cameraOffset, transform.parent.position);
+
             if (Physics.Linecast(transform.position, transform.position + transform.rotation * cameraOffset, out hit)) // if something is colliding with the line from camera target to camera,
             {
                 cameraTransform.localPosition = new Vector3(0, 0, -Vector3.Distance(transform.position, hit.point)); // move the camera to that collision point

@@ -52,6 +52,15 @@ public class MovementScript : MonoBehaviour
 
     [SerializeField] private Animator characterAnimator;
 
+
+    [SerializeField] private GameObject characterMesh;
+
+    [SerializeField] private Material characterDefault;
+    [SerializeField] private Material characterBoots;
+    [SerializeField] private Material characterArmour;
+    [SerializeField] private Material characterBootsArmour;
+
+
     /// <summary>
     /// This function calculates the new max speed of the player based on weight.
     /// </summary>
@@ -72,16 +81,25 @@ public class MovementScript : MonoBehaviour
             gameObject.transform.position = tutorialSpawn.transform.position + (Vector3.up * 2);
         }
 
+        // Character Powerup Mesh Changing
+
         if (DataStorage.saveData.hermesBoots == true)
         {
             baseMaxSpeed = 6;
-            hermesBootsObject.SetActive(true);
+            characterMesh.GetComponent<Renderer>().material = characterBoots;
         }
 
         if (DataStorage.saveData.extraHealth == true)
         {
-            gameObject.GetComponent<Renderer>().material.color = new Color(0f, 1, 1);
+            characterMesh.GetComponent<Renderer>().material = characterArmour;
         }
+
+        if ((DataStorage.saveData.hermesBoots == true) && (DataStorage.saveData.extraHealth == true))
+        {
+            characterMesh.GetComponent<Renderer>().material = characterBootsArmour;
+        }
+
+        //
 
         if (DataStorage.saveData.map == true)
         {

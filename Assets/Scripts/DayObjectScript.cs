@@ -9,7 +9,8 @@ public class DayObjectScript : MonoBehaviour
     [SerializeField] private float moveSpeed;
 
     private float minRotation = 60;
-    private float maxRotation = 70;
+    private float maxRotation = 120;
+    private float currentAngle = 60;
     private enum objectType
     {
         rotatingWall = 0,
@@ -57,14 +58,19 @@ public class DayObjectScript : MonoBehaviour
                 break;
 
             case objectType.leverRotation:
-                if (DataStorage.lever == true && transform.localEulerAngles.x < maxRotation) // If the lever is on and is still smaller than the max rotation,
+                if ((DataStorage.lever) && (currentAngle < maxRotation)) // If the lever is on and is still smaller than the max rotation,
                 {
-                    transform.rotation = new Quaternion(transform.rotation.x + moveSpeed, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+                    currentAngle += moveSpeed * Time.fixedDeltaTime;
+                    transform.localRotation = Quaternion.Euler(currentAngle, 180, 0);
+                    //transform.Rotate(moveSpeed * Time.fixedDeltaTime, 0, 0);
                 }
-                else if (DataStorage.lever == false && transform.localEulerAngles.x > minRotation) // If the lever is off and it still greater the min rotation,
+                else if ((!DataStorage.lever) && (currentAngle > minRotation)) // If the lever is off and it still greater the min rotation,
                 {
-                    transform.rotation = new Quaternion(transform.rotation.x - moveSpeed, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+                    currentAngle -= moveSpeed * Time.fixedDeltaTime;
+                    transform.localRotation = Quaternion.Euler(currentAngle, 180, 0);
+                    //transform.Rotate(-moveSpeed * Time.fixedDeltaTime, 0, 0);
                 }
+                print((transform.localEulerAngles.x + 360) % 360);
                 break;
         }
 
